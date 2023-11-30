@@ -1,0 +1,16 @@
+- GUI #(Omar Saleh)#: 1- Text Box XML
+                      2- Button for selecting file
+                      3- Button for converting from XML to JSON
+                      4- Button prettier
+                      5- Button File compression
+                      6- Button for detecting and correcting Errors
+
+- Prettier #(Youssef Ashmawy)#: 1- Identation
+
+- Error checking #(Mohammed Mostafa)#: 1- for every <> check for </>
+                                       2- Add missing tags
+                                       3- Check for any unhandeled errors
+
+- File compression #(Fathy Abdelhady)#
+
+- Parsing and XML to JSON #(Ahmad Mahfouz & Youssef Shawky)
