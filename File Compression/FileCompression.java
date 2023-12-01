@@ -10,6 +10,14 @@ public class FileCompression{
     /**************************************************/
     /**************************************************/
 
+    //Use the FileSample.fileSampleSelector() method in the main to test your code
+    /********************EXAMPLE**************************************************/
+    /*  
+        public static void main(String [] args) throws Exception{
+            FileSample.fileSampleSelector();
+        }
+    */
+    
     public void compressXML(){
         //TODO
         
