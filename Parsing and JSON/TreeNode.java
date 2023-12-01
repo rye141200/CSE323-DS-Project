@@ -1,37 +1,44 @@
 import java.util.ArrayList;
-
-public class TreeNode {
-    private String TagName;
-    private String TagValue;
-    private ArrayList<TreeNode> Children;
+/*****************************/
+/* 
+    Author: Youssef Shawky
+    Description: - Implementation of TreeNode
     
-    public TreeNode(String TagName, String TagValue, ArrayList<TreeNode> Children) {
-        this.TagName = TagName;
-        this.TagValue = TagValue;
-        this.Children = Children;
+ */
+/*****************************/
+public class TreeNode {
+    private String tagName;
+    private String tagValue;
+    private ArrayList<TreeNode> children;
+    
+    public TreeNode(String tagName, String tagValue) {
+        this.tagName = tagName;
+        this.tagValue = tagValue;
+        this.children = new ArrayList<>();
     }
 
     public String getTagName() {
-        return TagName;
+        return tagName;
     }
 
     public String getTagValue() {
-        return TagValue;
+        return tagValue;
     }
 
     public ArrayList<TreeNode> getChildren() {
-        return Children;
-    }
-
-    public void setTagName(String TagName) {
-        this.TagName = TagName;
-    }
-
-    public void setTagValue(String TagValue) {
-        this.TagValue = TagValue;
+        return children;
     }
 
     public void addChildren(TreeNode Node) {
-        this.Children.add(Node);
+        this.children.add(Node);
+    }
+    public void printNode(){
+        System.out.println("Tag name: " + tagName);
+        System.out.println("Tag Value: " + tagValue);
+
+        if(children.isEmpty())
+            return;
+        for(TreeNode node: children)
+            node.printNode();
     }
 }
