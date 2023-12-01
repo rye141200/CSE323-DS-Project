@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
 public class Formatting {
     // IF ANY METHOD PROTOTYPE GOT CHANGED, LIST THE CHANGES IN THE "methods.txt" FILE 
     // UNIT TEST ALL THE METHODS
