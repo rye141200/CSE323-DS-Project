@@ -8,7 +8,7 @@ public class FileSample {
             ArrayList<String> lines = new ArrayList<String>();
             while(input.hasNext()){
                 String added_line = input.nextLine();
-                lines.add(added_line);
+                lines.add(added_line.trim());
             }
             return lines;
     }
