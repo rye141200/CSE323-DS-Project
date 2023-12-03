@@ -22,17 +22,16 @@ public class FileCompression{
         }
     */
 
-    public static String minify(ArrayList<String> lines)
-	{
+    public static String minify(ArrayList<String> lines){
 		String str = "",endString = "";
 		boolean prevChar,nextChar;
 		int length,start,end;
 		for(String line : lines)
 		{
 			length = line.length();    
-        	start = 0;
+        		start = 0;
 			end = 0;    
-        	char val[] = line.toCharArray();
+        		char val[] = line.toCharArray();
 
 			while( end < length )
 			{
