@@ -1,0 +1,32 @@
+Helper functions:
+		1) tagsParsing: 
+		if( opening tag start "<" exists && no slash ) # CASE 1 "<user>" -> only in line
+			then we entered new node (new scope) (only if the next line doesn't contain value), else wait for the tagValue in next line 
+			split the line by ">" (">" is cancelled)
+			create the node (store tag name)
+			add node to tree 
+			push the node into the node stack
+			
+		if( opening tag  && slash exists ) #CASE 2 "<name> Ahmad Ali </name>"
+			create new node
+			add node to tree
+			
+
+
+
+*****************************************
+
+
+<name> AHMAD ALI </name>
+OPTION 1 (SPLITTING)
+split by ">"
+
+1) "<name" => get tagName by accessing string[1:end]
+
+2) "AHMAD ALI</name", split by "<"
+  2.1) "AHMAD ALI" => tagValue
+  2.2) "/name" => delimiter => we know we exit the scope			
+*****************************************
+OPTION 2 (SUBSTRING)
+String example = "<name> Ahmad Ali</name>";
+        String exampleArrayList = example.substring(example.indexOf('>')+1,example.indexOf('/')-1);
