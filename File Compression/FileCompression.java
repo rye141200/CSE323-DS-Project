@@ -88,8 +88,9 @@ public class FileCompression{
 		return endString;
 	}
 
-    
-    public void compressXML(){
+    //1) Use the following line of code to get parsed file:
+    // FileSampleEnhanced.readFileParsed(); -> Returns ArrayList<String> of parsed lines of file
+    public static void compressXML() throws Exception{
         //TODO
         
     }
