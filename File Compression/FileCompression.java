@@ -84,6 +84,7 @@ public class FileCompression{
 			{
 				break;
 			}
+			endString = endString.substring(0, endString.length()-1);
 			end = str.indexOf(" ",start);
 		}
 		return endString;
