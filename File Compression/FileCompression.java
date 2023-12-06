@@ -14,11 +14,12 @@ public class FileCompression{
     /**************************************************/
     /**************************************************/
 
-    //Use the FileSample.fileSampleSelector() method in the main to test your code
+    // Use the following line of code to get parsed file:
+    // FileSampleEnhanced.readFileParsed(); -> Returns ArrayList<String> of parsed lines of file
     /********************EXAMPLE**************************************************/
     /*  
         public static void main(String [] args) throws Exception{
-            FileSample.fileSampleSelector();
+            FileSampleEnhanced.readFileParsed();
         }
     */
 
@@ -88,8 +89,14 @@ public class FileCompression{
 		return endString;
 	}
 
-    //1) Use the following line of code to get parsed file:
+    // Use the following line of code to get parsed file:
     // FileSampleEnhanced.readFileParsed(); -> Returns ArrayList<String> of parsed lines of file
+    /********************EXAMPLE**************************************************/
+    /*  
+        public static void compressXML() throws Exception{
+            FileSampleEnhanced.readFileParsed();
+        }
+    */
     public static void compressXML() throws Exception{
         //TODO
         
