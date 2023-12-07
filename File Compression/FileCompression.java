@@ -102,6 +102,6 @@ public class FileCompression{
     */
     public static void compressXML() throws Exception{
         //TODO
-        
+        ArrayList<String> linesParsed = FileSampleEnhanced.readFileParsed(); //Use this list in compressing the file, good luck!
     }
 }
