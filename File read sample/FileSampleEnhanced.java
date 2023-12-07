@@ -21,7 +21,11 @@ public class FileSampleEnhanced {
         //2) Making the ArrayList
         ArrayList<String> linesList = new ArrayList<>(Arrays.asList(linesBlock.toString().split("[<>]")));
         linesList.removeAll(Arrays.asList("",null)); // remove empty space elements
-        //Seperating tags an values
+        //remove whitespaces
+        for(int i =0;i<linesList.size();i++)
+            linesList.set(i,linesList.get(i).trim());
+        
+            //Seperating tags an values
         int index = 0;
         ArrayList<String> tags = new ArrayList<>(); // all tags in XML
         for(String element:linesList){
