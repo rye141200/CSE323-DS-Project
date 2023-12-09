@@ -104,8 +104,8 @@ public class FileCompression{
 	
     // Data Fields
     static ArrayList<String> linesParsed = FileSampleEnhanced.readFileParsed();
-    static HashMap <String, String> encodingMap = new HashMap <String, String>();
-    static HashMap <String, String> decodingMap = new HashMap <String, String>();
+    static ArrayList<String> decoddedTags = new ArrayList<>();
+    static ArrayList<String> encoddedTags = new ArrayList<>();
 	
     
     // Compresses XML or JSON file, doesn't return anything
@@ -129,14 +129,15 @@ public class FileCompression{
             start = "<";
             end = ">";
         }
-        
+
+	// going through the file lines (linesParsed) line by line
         for (int i = 0; i < linesParsed.size(); i++){
             
             String line = linesParsed.get(i);
-            int numberOfTags = ("begin"+line+"end").split(end).length - 1;
+            int numberOfDecoddedTags = ("begin"+line+"end").split(end).length - 1;
             
-            // extracting the part we want to encode
-            while (numberOfTags != 0){
+            // going through each tag in the line
+            while (numberOfDecoddedTags != 0){
                 
                 if (linesParsed.get(i).contains(start) && linesParsed.get(i).contains(end)){
                     int startingIndex = line.indexOf(start);
@@ -145,21 +146,24 @@ public class FileCompression{
 
                     // if it wasn't encodded before, then we will get a unique value for it and store it
                     // and we will encode it using that unique value
-                    if (!encodingMap.containsKey(tag)){
-                        encodingMap.put(tag, String.valueOf((char)code));
-                        decodingMap.put(String.valueOf((char)code), tag);
+                    if (!decoddedTags.contains(tag)){
+                        decoddedTags.add(tag);
+                        encoddedTags.add(String.valueOf((char)code));
                         linesParsed.set(i, line.replace(tag, String.valueOf((char)code)));
                         code++;
                     }
-                    // but if it was encodded before then it must be in the encodingMap
-                    // so, we will use the same unique value we used before to encode it
+                    // but if it was encodded before then it must be in the decoddedTags
+                    // so, we will use the same unique value (in the encoddedTags) we used before to encode it
                     else{
-                        linesParsed.set(i, line.replace(tag, encodingMap.get(tag)));
+                        linesParsed.set(i, line.replace(tag, encoddedTags.get(decoddedTags.indexOf(tag))));
                     }
+			
                 } 
+		    
                 line = linesParsed.get(i);
-                numberOfTags--; 
+                numberOfDecoddedTags--; 
 	    }  
+		
         } 
 	    
     }
@@ -173,15 +177,15 @@ public class FileCompression{
             
             String line = linesParsed.get(i);
             
-            for (String key : decodingMap.keySet()){
-		    
-            	// for every key you find, replace it with the right tag
-                while (line.contains(key)){
-                    linesParsed.set(i, line.replace(key, decodingMap.get(key)));
+            for (String encoddedTag : encoddedTags){
+            
+                while (line.contains(encoddedTag)){
+                    linesParsed.set(i, line.replace(encoddedTag, decoddedTags.get(encoddedTags.indexOf(encoddedTag))));
                     line = linesParsed.get(i);
                 }
-		    
+            
             }
+		
         }
 	    
     }
