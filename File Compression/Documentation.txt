@@ -1,0 +1,34 @@
+///////////////////////////////// Documentation /////////////////////////////////////
+
+
+    Author: Abdallah Mohamed (@AntiHexCode)
+
+
+    1) Breif Description
+    ---------------------
+    
+    The compressFile(String fileType) function takes a string as an argument which
+    represents the the type of the file that will be compressed, and it's either 
+    a "JSON" or "XML" file.
+    
+    The Algorithm used iterates over all the lines while rewriting each uniqe 
+    tag as a single uniqe upper-case character and stores the tag and the corresponding 
+    upper-case character, so we can go back to the original text using the decompressFile().
+    
+    The key idea is that instead of writing multiple characters to represent a single tag,
+    we just write a unique single upper-case character, which decreases the size of
+    the file leading to a file compression.
+    
+    The decompressFile() function simply does the opposite, knowing the unique character
+    for each tag, we loop over each line and rewrite each unique character with its 
+    corresponding tag that we stored earlier.
+    
+    
+    2) Time Complexity
+    -------------------
+    
+    Each function take (approx.) a time complexity of O(n) in the worst case.
+    Assuming that (n) is the total number of characters in the whole file.
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
