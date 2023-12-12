@@ -23,20 +23,20 @@ public class ErrorHandler{
         }
     */
 
-    public boolean containsError(){
+    public boolean containsError(String path){
 
-        return true; //remove this line before starting!!!
+        ArrayList Errors = detectError(path) ; 
+        if(Errors.size() == 0 ) return false ; 
+       else  return true; 
     }
 
-    public ArrayList<String> detectError(){
+    public ArrayList<String> detectError(String path)throws IOException{
         /* 
             Task:
             - Implement a method that finds the mistakes in the XML file, store the lines with the mistakes in an ArrayList of strings and return it
         */
-
-        //TODO
-
-        return new ArrayList<>();  //remove this line before starting!!!
+        return detectionLastStep(path);
+        
     }
 
     public void correctError(){
@@ -48,5 +48,9 @@ public class ErrorHandler{
 
         //TODO
     }
+
+
+
+
 
 }
