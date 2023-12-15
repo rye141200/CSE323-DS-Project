@@ -30,23 +30,14 @@ public class ErrorHandler{
        else  return true; 
     }
 
-    public ArrayList<String> detectError(String path)throws IOException{
-        /* 
-            Task:
-            - Implement a method that finds the mistakes in the XML file, store the lines with the mistakes in an ArrayList of strings and return it
-        */
+    public ArrayList<Integer> detectError(String path)throws IOException{
+     
         return detectionLastStep(path);
         
     }
 
-    public void correctError(){
-        /* 
-            Task:
-            - Implement a method that corrects the mistakes by writing into a new file, and asks the user where to store it
-            - Use the method detectError() to get the info about the lines containing the mistakes 
-         */
-
-        //TODO
+    public ArrayList<String> correctError(String path) throws IOException{
+        return correctLastStep(path);
     }
 
 
