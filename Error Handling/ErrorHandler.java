@@ -39,7 +39,15 @@ public class ErrorHandler{
     public ArrayList<String> correctError(String path) throws IOException{
         return correctLastStep(path);
     }
-
+ 
+    // should be called at first 
+    public void prepareFile(String path )throws IOException{
+        String content = readFromFile(path);
+        String processedContent = collapseTags(content);
+        String x = formatXml(processedContent);
+        x=removeEmptyLines(x);
+        writeToFile(path,x);
+    }
 
 
 
