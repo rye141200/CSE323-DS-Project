@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException, IOException, Exception {
-        String path = "C:\\Users\\user\\OneDrive\\Desktop\\138-KB-XML-File.xml"; // put your own path :)
+        String path = "C:\\Users\\user\\OneDrive\\Desktop\\XML_example.xml"; // put your own path :)
 
 //        removeEmptyLinesAndWriteToFile(path);
 //      removeEmptySpacesAndWriteToFile(path);
@@ -111,9 +111,9 @@ ArrayList<Integer> line = checkRootsPlace(data) ;
 
 
         // correction missed symbol like < or >
-        ArrayList<Integer> i=identifyErrorLines(path);
-       ArrayList<String>s= correctErrorInSymbols(i,path);
-        System.out.println(s);
+    //     ArrayList<Integer> i=identifyErrorLines(path);
+    //    ArrayList<String>s= correctErrorInSymbols(i,path);
+    //     System.out.println(s);
 
 
         /*
@@ -131,10 +131,80 @@ ArrayList<Integer> line = checkRootsPlace(data) ;
         correctMismatch(lines , path);
         */
 
+
+
+    }
+
+
+    private static String formatXml(String input) {
+        // Add new lines after > and before <
+        String resultWithNewLines = input.replaceAll(">(?=[\\\\<])", ">\n").replaceAll("<(?!/)", "\n<");
+
+        return resultWithNewLines;
+    }
+    private static String removeEmptyLines(String input) {
+        return input.replaceAll("(?m)^[ \t]*\r?\n", "");
+    }
+
+
+
+
+    private static String readFromFile(String filePath) throws IOException {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append(System.lineSeparator());
+            }
+        }
+        return content.toString();
+    }
+
+    private static void writeToFile(String filePath, String content) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(content);
+        }
+    }
+
+    private static String collapseTags(String content) {
+        StringBuilder result = new StringBuilder();
+
+        boolean insideTag = false;
+        boolean hasText = false;
+
+        for (char c : content.toCharArray()) {
+            if (c == '<') {
+                insideTag = true;
+                hasText = false;
+            }
+
+            if (Character.isWhitespace(c)) {
+                // Skip whitespace characters inside tags
+                continue;
+            }
+
+            if (insideTag && c == '>') {
+                insideTag = false;
+
+                if (hasText) {
+                    result.append('>');
+                }
+            }
+
+            result.append(c);
+
+            if (!insideTag && !Character.isWhitespace(c)) {
+                hasText = true;
+            }
+        }
+
+        return result.toString();
     }
 
     // correct method
-   
+    public ArrayList<String> correctError(String path) throws IOException{
+        return correctLastStep(path);
+    }
 
     // last step before correct Method
     ArrayList<String> correctLastStep (String path ) throws  IOException{
@@ -235,10 +305,10 @@ ArrayList<Integer> line = checkRootsPlace(data) ;
         return finalArr;
     }
 
-    // public static ArrayList<Integer> detectError(String path) throws IOException {
+    public static ArrayList<Integer> detectError(String path) throws IOException {
 
-    //     return detectionLastStep(path);
-    // }
+        return detectionLastStep(path);
+    }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////
