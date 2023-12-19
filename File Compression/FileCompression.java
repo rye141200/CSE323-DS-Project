@@ -98,26 +98,26 @@ public class FileCompression{
 ///////////////////////////////////////////////////////////////////////////////////////////////
 	
     // Author: Abdallah Mohamed (@AntiHexCode)
-    // Functions: compressFile(String fileType):void, decompressFile():void
+    // Functions: compressFile(String fileType, ArrayList<String> linesParsed):String, decompressFile(ArrayList<String> linesParsed):String
     // to compress and decompress XML or JSON file
 
 	
     // Data Fields
-    static ArrayList<String> linesParsed = FileSampleEnhanced.readFileParsed();
     static ArrayList<String> decoddedTags = new ArrayList<>();
     static ArrayList<String> encoddedTags = new ArrayList<>();
 	
     
-    // Compresses XML or JSON file, doesn't return anything
+    // Compresses XML or JSON file, returns the compressed content of the file
     // it compresses the lines in the linesParsed ArrayList
-    public static void compressFile(String fileType){
+    public static String compressFile(String fileType, ArrayList<String> linesParsed){
 
+	String compressedFileContent = "";
         String start;
         String end;
         
         // using unicode characters to encode
 	// note that we can change it if we need more characters to encode with
-        int code = 65;
+        int code = 200;
         
         // determining the start and the end of the encodded part of the line
         // depends on the file format (XML or JSON)
@@ -162,16 +162,20 @@ public class FileCompression{
 		    
                 line = linesParsed.get(i);
                 numberOfDecoddedTags--; 
-	    }  
-		
-        } 
-	    
+	    }
+
+            compressedFileContent += (line + "\n");	
+        }
+
+	return compressedFileContent;   
     }
 
     
     // Decompresses a XML or JSON that was encodded with the compressFile function
     // it decompresses the lines in the linesParsed ArrayList that was already compressed
-    public static void decompressFile(){
+    public static String decompressFile(ArrayList<String> linesParsed){
+
+        String decompressedFileContent = "";
         
         for (int i = 0; i < linesParsed.size(); i++){
             
@@ -185,9 +189,11 @@ public class FileCompression{
                 }
             
             }
-		
+
+	    decompressedFileContent += (line + "\n");
         }
-	    
+
+        return decompressedFileContent;    
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
