@@ -30,24 +30,44 @@ public class ErrorHandler{
        else  return true; 
     }
 
-    public ArrayList<Integer> detectError(String path)throws IOException{
-     
-        return detectionLastStep(path);
-        
-    }
+     public static ArrayList<Integer>detectError(String path)throws IOException{
+            ArrayList<Integer> detectionAll = new ArrayList<>();
+            ////////////////////////////////////////////
+            ArrayList<String> parsedTags = parseTagsFromFile(path);
+            //////////////////////////////////////////////
 
-    public ArrayList<String> correctError(String path) throws IOException{
-        return correctLastStep(path);
-    }
- 
-    // should be called at first 
-    public void prepareFile(String path )throws IOException{
-        String content = readFromFile(path);
-        String processedContent = collapseTags(content);
-        String x = formatXml(processedContent);
-        x=removeEmptyLines(x);
-        writeToFile(path,x);
-    }
+            ////////////////////////////////////////////
+            ArrayList<String>messages1=detectTagsErrors(parsedTags);
+            ArrayList<Integer>detect1 = pickLastNumbers(messages1);
+            ///////////////////////////////////////////
+
+            /////////////////////////////////////////
+            ArrayList<String>messages2=detectMissingClosingTag(parsedTags);
+            ArrayList<Integer>detect2 = pickLastNumbers(messages2);
+            //////////////////////////////////////////////
+            detectionAll.addAll(detect1);
+            detectionAll.addAll(detect2);
+            return detectionAll;
+        }
+
+
+
+  public static void correctError(String path) throws IOException
+        {
+            ////////////////////////////////////////////
+            ArrayList<String> parsedTags = parseTagsFromFile(path);
+            //////////////////////////////////////////////
+
+            /////////////////////////////////////////////
+            ArrayList<String> data1 = detectTagsErrors(parsedTags) ;
+            correctTagsErrors(data1,path);
+            ///////////////////////////////////////
+
+            ///////////////////////////////////////////
+            ArrayList<String>data2=detectMissingClosingTag(parsedTags);
+            correctMissingClosingTag(path,data2);
+            /////////////////////////////////////////
+        }
 
 
 
