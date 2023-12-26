@@ -1,5 +1,37 @@
 ///////////////////////////////// Documentation /////////////////////////////////////
 
+    Author: Fathy Abdlhady
+
+
+    1) Description
+    ---------------------
+    
+    The String minify() function delete all newline characters and unnecessary spaces in XML or JSON file
+    first we invoke FileSampleEnhanced.readFileParsed() function which
+    returns an Arraylist of type String that has all the lines in the file
+    then we iterate each line and eliminate newline characters and making all contiguous spaces a single space
+    here is an example  "   <    note     >
+					<body>Don't forget              me this weekend!</body      >
+				<     /note      >
+				"
+    
+    the result is  " < note > <body>Don't forget me this weekend!</body > < /note > "
+
+    Then we check each space and see if it needs to be deleted or not
+    so if we take the above result " < note > <body>Don't forget me this weekend!</body > < /note > "
+    Then the final result will be  "<note><body>Don't forget me this weekend!</body></note>" 
+    
+    
+    2) Time Complexity & Space Complexity
+    -------------------
+    
+    Assuming that (n) is the total number of characters in the whole file.
+    Then Time Comlexity is O(n^2) & Space Complexity is O(n)
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+
 
     Author: Abdallah Mohamed (@AntiHexCode)
 
