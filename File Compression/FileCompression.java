@@ -25,7 +25,7 @@ public class FileCompression{
 
 	// Author: Fathy Abdlhady
     	// Functions: String minify()
-   	 // to delete all newline characters and unnecessary spaces in XML or JSON file
+   	// to delete all newline characters and unnecessary spaces in XML or JSON file
 
 	// Assuming that (n) is the total number of characters in the whole file
 	// Then Time Complexity is O(n^2) and Space Complexity is O(n)
@@ -41,7 +41,7 @@ public class FileCompression{
 		/*      <    note     >
 				<body>Don't forget              me this weekend!</body      >
 				<     /note      >
-    	*/
+    		*/
 		// The result is 
 		/* < note > <body>Don't forget me this weekend!</body > < /note >  */  
 		for(String line : lines)
