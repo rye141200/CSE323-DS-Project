@@ -116,18 +116,23 @@ public class FileCompression{
 
 	
     // Data Fields
-    static ArrayList<String> decoddedTags = new ArrayList<>();
-    static ArrayList<String> encoddedTags = new ArrayList<>();
+    static ArrayList<String> xmlDecoddedTags;
+    static ArrayList<String> xmlEncoddedTags;
+    static ArrayList<String> jsonDecoddedTags;
+    static ArrayList<String> jsonEncoddedTags;
 	
     
     // Compresses XML or JSON file, returns the compressed content of the file
     // it compresses the lines in the linesParsed ArrayList
     public static String compressFile(String fileType, ArrayList<String> textLinesParsed){
-
+	    
+    	ArrayList<String> decoddedTags = new ArrayList<>();
+    	ArrayList<String> encoddedTags = new ArrayList<>();
     	ArrayList<String> linesParsed = textLinesParsed;
 	String compressedFileContent = "";
         String start;
         String end;
+
         
         // using unicode characters to encode
 	// note that we can change it if we need more characters to encode with
@@ -181,16 +186,38 @@ public class FileCompression{
             compressedFileContent += (line + "\n");	
         }
 
+    	if (fileType.toLowerCase().contains("json")){
+   	    jsonDecoddedTags = decoddedTags;
+    	    jsonEncoddedTags = encoddedTags;
+		
+	}
+    	else {
+	    xmlDecoddedTags = decoddedTags;
+    	    xmlEncoddedTags = encoddedTags;
+	}
+
 	return compressedFileContent;   
     }
 
     
     // Decompresses a XML or JSON that was encodded with the compressFile function
     // it decompresses the lines in the linesParsed ArrayList that was already compressed
-    public static String decompressFile(ArrayList<String> textLinesParsed){
+    public static String decompressFile(String fileType, ArrayList<String> textLinesParsed){
 
-    	ArrayList<String> linesParsed = textLinesParsed;
+	ArrayList<String> linesParsed = textLinesParsed;
+	ArrayList<String> decoddedTags;
+    	ArrayList<String> encoddedTags;
         String decompressedFileContent = "";
+
+	if (fileType.toLowerCase().contains("json")){
+   	    decoddedTags = jsonDecoddedTags;
+    	    encoddedTags = jsonEncoddedTags;
+		
+	}
+    	else {
+	    decoddedTags = xmlDecoddedTags;
+    	    encoddedTags = xmlEncoddedTags;
+	}
         
         for (int i = 0; i < linesParsed.size(); i++){
             
