@@ -23,11 +23,27 @@ public class FileCompression{
         }
     */
 
-	public static String minify(ArrayList<String> lines)
+	// Author: Fathy Abdlhady
+    	// Functions: String minify()
+   	 // to delete all newline characters and unnecessary spaces in XML or JSON file
+
+	// Assuming that (n) is the total number of characters in the whole file
+	// Then Time Complexity is O(n^2) and Space Complexity is O(n)
+	public static String minify() throws Exception
 	{
+		ArrayList<String> lines = FileSampleEnhanced.readFileParsed(); 
 		String str = "",endString = "";
 		boolean prevChar,nextChar;
 		int length,start,end;
+
+		// the first thing we do is eliminiting all newling character and making all spaces only a single space
+		// let's take an example 
+		/*      <    note     >
+				<body>Don't forget              me this weekend!</body      >
+				<     /note      >
+    	*/
+		// The result is 
+		/* < note > <body>Don't forget me this weekend!</body > < /note >  */  
 		for(String line : lines)
 		{
 			length = line.length();    
@@ -55,9 +71,17 @@ public class FileCompression{
 				end++;
 			}
 		}
+
+		
 		start = 0;
 		length = str.length();
 		end = str.indexOf(" ",start);
+
+		// Then here we see if these single spaces are necessary or not
+		// here is an example
+		/* < note > <body>Don't forget me this weekend!</body > < /note > */
+		// The result is
+		/* <note><body>Don't forget me this weekend!</body></note> */
 		while( end != -1 )
 		{
 			prevChar = false;
@@ -91,6 +115,7 @@ public class FileCompression{
 
 		return endString;
 	}
+
 
 	
 
