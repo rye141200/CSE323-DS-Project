@@ -122,8 +122,9 @@ public class FileCompression{
     
     // Compresses XML or JSON file, returns the compressed content of the file
     // it compresses the lines in the linesParsed ArrayList
-    public static String compressFile(String fileType, ArrayList<String> linesParsed){
+    public static String compressFile(String fileType, ArrayList<String> textLinesParsed){
 
+    	ArrayList<String> linesParsed = textLinesParsed;
 	String compressedFileContent = "";
         String start;
         String end;
@@ -186,8 +187,9 @@ public class FileCompression{
     
     // Decompresses a XML or JSON that was encodded with the compressFile function
     // it decompresses the lines in the linesParsed ArrayList that was already compressed
-    public static String decompressFile(ArrayList<String> linesParsed){
+    public static String decompressFile(ArrayList<String> textLinesParsed){
 
+    	ArrayList<String> linesParsed = textLinesParsed;
         String decompressedFileContent = "";
         
         for (int i = 0; i < linesParsed.size(); i++){
