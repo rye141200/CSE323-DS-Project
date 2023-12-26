@@ -4,7 +4,7 @@
 
 
     1) Description
-    ---------------------
+    ---------------
     
     The String minify() function delete all newline characters and unnecessary spaces in XML or JSON file
     first we invoke FileSampleEnhanced.readFileParsed() function which
@@ -23,7 +23,7 @@
     
     
     2) Time Complexity & Space Complexity
-    -------------------
+    --------------------------------------
     
     Assuming that (n) is the total number of characters in the whole file.
     Then Time Comlexity is O(n^2) & Space Complexity is O(n)
