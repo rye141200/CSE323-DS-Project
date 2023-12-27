@@ -1,7 +1,7 @@
 <h1><img src="Styling/xml.png" width= 40 height=40/><img src="Styling/XMLParser.svg" alt="XMLParser"/></h1>
 <ul>
     <li>
-        <h2>Project overview:</h2>
+        <h2><img src="Styling/overview icon better.png" width= 30 height=30/> Project overview:</h2>
         <h3><i>This program aims to:</i></h3>
         <ul>
             <li>Parse XML text</li>
