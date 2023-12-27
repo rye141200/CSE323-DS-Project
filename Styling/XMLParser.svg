@@ -1,0 +1,18 @@
+<svg width="200" height="50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes colorTransition {
+      0% { fill: orange; }
+      50% { fill: white; }
+      100% { fill: orange; }
+    }
+
+    text {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      animation: colorTransition 4s infinite;
+    }
+  </style>
+
+  <text x="10" y="40">XMLParser</text>
+</svg>
