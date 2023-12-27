@@ -1,4 +1,4 @@
-<h1><strong>XMLParser</strong></h1>
+<h1><img src="Styling/XMLParser.svg" alt="XMLParser"/></h1>
 <ul>
     <li>
         <h2>Project overview:</h2>
