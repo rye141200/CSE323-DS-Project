@@ -128,7 +128,7 @@ public class FileCompression{
 	    
     	ArrayList<String> decoddedTags = new ArrayList<>();
     	ArrayList<String> encoddedTags = new ArrayList<>();
-    	ArrayList<String> linesParsed = textLinesParsed;
+    	ArrayList<String> linesParsed = new ArrayList<>(textLinesParsed);
 	String compressedFileContent = "";
         String start;
         String end;
@@ -204,7 +204,7 @@ public class FileCompression{
     // it decompresses the lines in the linesParsed ArrayList that was already compressed
     public static String decompressFile(String fileType, ArrayList<String> textLinesParsed){
 
-	ArrayList<String> linesParsed = textLinesParsed;
+	ArrayList<String> linesParsed = new ArrayList<>(textLinesParsed);
 	ArrayList<String> decoddedTags;
     	ArrayList<String> encoddedTags;
         String decompressedFileContent = "";
