@@ -31,13 +31,17 @@
     3) Space Complexity
     --------------------
 
-    it is worth noting that while  we could make the Undo/Redo functionality could undo 
-    and redo every change that happens in a file, that comes at the cost of the memory 
+    It is worth noting that while we did make the Undo/Redo functionality undo and
+    redo every change that happens in a file, that comes at the cost of the memory 
     as every small change and the whole file is pushed to the stack.
+
     But the nature of the program that it was made to do some functionalities on the 
     inputted file, maybe some changes to it, but it's not mainly for just editing a file.
-    So it was decided to undo or redo a fixed number of changes to avoid any memory overflow
+
+    We could make it to undo or redo a fixed number of changes to avoid any memory overflow
     problems due to maybe keep changing the file leading to pushing alot to the stack.
-    So (approx.) the space complexity is O(1) in the worst case.
+    But this could increase the time complexity in a vital functionality like that,
+    so we would leave it as that, and warn the user to look out for any high memory usage
+    in case of making alot of changes sequentially.
 
     ///////////////////////////////////////////////////////////////////////////////////////
