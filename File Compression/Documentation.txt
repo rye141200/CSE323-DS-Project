@@ -52,9 +52,9 @@
     we just write a unique single character, which decreases the size ofthe file leading 
     to a file compression.
     
-    The decompressFile(ArrayList<String> linesParsed) function simply does the opposite, 
-    knowing the unique character for each tag, we loop over each line and rewrite each 
-    unique character with its corresponding tag that we stored earlier.
+    The decompressFile(String fileType,ArrayList<String> linesParsed) function simply 
+    does the opposite, knowing the unique character for each tag, we loop over each line
+    and rewrite each unique character with its corresponding tag that we stored earlier.
 
     Each function returns a string, the first function returns a string which contains
     the compressed content of the file, and the second function returns a string which
@@ -66,6 +66,13 @@
     
     Each function take (approx.) a time complexity of O(n) in the worst case.
     Assuming that (n) is the total number of characters in the whole file.
+
+
+    3) Space Complexity
+    --------------------
+
+    Each function take (approx.) a space complexity of O(m) in the worst case.
+    Assuming that (m) is the total number of words in the whole file.
 
 
     ///////////////////////////////////////////////////////////////////////////////////////
