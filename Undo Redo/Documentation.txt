@@ -1,0 +1,43 @@
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    Author: Abdallah Mohamed (@AntiHexCode)
+
+
+    1) Breif Description
+    ---------------------
+    
+    The setCurrentFileContent(String currentFileContent) function takes a string as
+    an argument which represents the current text or content in the file. When a change
+    happens, before the currentFileContent string variable gets updated with the new
+    content, we push the old content in the undoStack so we can go back to it if needed.
+
+    If the undo() function was called, then we push the currentFileContent in the redoStack
+    so if we needed we can get it, then we set the currentFileContent with the last string
+    that was pushed in the undoStack, and finally we pop that string from the redoStack.
+
+    If the redo() function was called, then we push the currentFileContent in the undoStack
+    so if we needed we can get it, then we set the currentFileContent with the last string
+    that was pushed in the redoStack, and finally we pop that string from the redoStack.
+    
+    
+    2) Time Complexity
+    -------------------
+    
+    Each function take (approx.) a time complexity of O(1) in the worst case.
+
+
+    3) Space Complexity
+    --------------------
+
+    it is worth noting that while  we could make the Undo/Redo functionality could undo 
+    and redo every change that happens in a file, that comes at the cost of the memory 
+    as every small change and the whole file is pushed to the stack.
+    But the nature of the program that it was made to do some functionalities on the 
+    inputted file, maybe some changes to it, but it's not mainly for just editing a file.
+    So it was decided to undo or redo a fixed number of changes to avoid any memory overflow
+    problems due to maybe keep changing the file leading to pushing alot to the stack.
+    So (approx.) the space complexity is O(1) in the worst case.
+
+    ///////////////////////////////////////////////////////////////////////////////////////
