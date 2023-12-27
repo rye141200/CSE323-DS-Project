@@ -1,5 +1,5 @@
 <h1>XMLParser</h1>
-<ol>
+<ul>
     <li>
         <h2>Project overview:</h2>
             <p>
