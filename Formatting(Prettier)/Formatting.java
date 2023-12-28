@@ -1,3 +1,4 @@
+package com.example.demo.Prettier;
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -22,13 +23,11 @@ public class Formatting {
       
     
     
-    public static FileWriter formatXML() throws Exception{
+    public static StringBuilder formatXML(ArrayList<String> lines) throws Exception{
         //TODO
         int depth = 0;
         int index = 0;
         int INDENT = 2;
-        ArrayList<String> lines = (FileSampleEnhanced.readFileParsed());
-        System.out.println(lines);
         Stack<String> scope = new Stack<>();
         ArrayList<StringBuilder> Builder_lines = new ArrayList<>();
         for (int i = 0; i < lines.size(); i++) {
@@ -57,16 +56,11 @@ public class Formatting {
             index++;
 
         }
-        FileWriter formatted = new FileWriter("Formatting(Prettier)/Formatted.xml");
-        for (StringBuilder s :
-                Builder_lines) {
-            formatted.append(s.toString());
-            formatted.append("\n");
 
-            System.out.println(s);
-        }
-        formatted.close();
-    return formatted;
+        StringBuilder fileAsString;
+        fileAsString = new StringBuilder();
+        for(StringBuilder line : Builder_lines) fileAsString.append(line + "\n");
+        return fileAsString;
     }
     private static void  append_spaces(StringBuilder line, int depth){
     for (int i = 0; i < depth; i++){
@@ -75,12 +69,6 @@ public class Formatting {
         }
 
     }
-
-        public static void main(String [] args) throws Exception{
-           FileWriter test = formatXML();
-
-
-        }
 
 }
 
