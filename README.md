@@ -37,12 +37,72 @@
     <li>
         <h2><img src="Styling/time analysis.png" width=30 height=30/> Time complexity analysis:</h2>
         <h3><i>Time complexity analysis of each main method:</i></h3>
-        <li><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/File%20read%20sample/FileReaderEnhanced.java#L13">readFileParsed()</a>: O(n*m) where n is the size of file, m is the size of tag string</li>
-        <li><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Error%20Handling/ErrorHandler.java#L57">correctError()</a>: O(m*k+ p*q) where m is the number of lines, k is the average length of a line, p is the           number of error messages, and q is the average length of an error message.</li>
-        <li><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Error%20Handling/ErrorHandler.java#L28">containsError()</a>: O(n * m), where n is the number of lines and m is the average length of a line.</li>
-        <li><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Error%20Handling/ErrorHandler.java#L34">detectError()</a>: O(m*k+ p*q) where m is the number of lines, k is the average length of a line, p is the           number of error messages, and q is the average length of an error message.</li>
-        <li><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Formatting(Prettier)/Formatting.java#L26">formatXML()</a>: O(n*m*k), where n is size of XML file, m is the cost of inserting into the file, and k is the
-        identation which would normally reduce to O(n)</li>
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/File%20read%20sample/FileReaderEnhanced.java#L13">readFileParsed()</a></td>
+              <td>O(n*m) where n is the size of file, m is the size of tag string</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Error%20Handling/ErrorHandler.java#L57">correctError()</a></td>
+              <td> O(m*k+ p*q) where m is the number of lines, k is the average length of a line, p is the number of error messages, and q is the average length of an error message.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Error%20Handling/ErrorHandler.java#L28">containsError()</a></td>
+              <td>O(n * m), where n is the number of lines and m is the average length of a line.<td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Error%20Handling/ErrorHandler.java#L34">detectError()</a></td>
+              <td>O(m*k+ p*q) where m is the number of lines, k is the average length of a line, p is the number of error messages, and q is the average length of an error message.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Formatting(Prettier)/Formatting.java#L26">formatXML()</a></td>
+              <td> O(n*m*k), where n is size of XML file, m is the cost of inserting into the file, and k is the identation which would normally reduce to O(n)</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/Parsing%20and%20JSON/Parsing.java#L15">parseXML()</a></td>
+              <td>O(n*m), where n is the size of the file in terms of tags, m is the size of the tag string</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/Parsing%20and%20JSON/JSONConverter.java#L22">XMLToJSON()</a></td>
+              <td>O(n*m^2), where n is the size of file in terms of tags, m is the number of children of nodes</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/File%20Compression/FileCompression.java#L28">minify()</a></td>
+              <td>O(n^2), where n is the size of file in terms of tags</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/File%20Compression/FileCompression.java#L116">compressFile()</a></td>
+              <td>O(n) n is the total number of characters in the whole file.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/File%20Compression/FileCompression.java#L194">decompressFile()</a></td>
+              <td>O(n) n is the total number of characters in the whole file.</td>
+            </tr>
+            <tr>
+              <td>Row 2, Cell 1</td>
+              <td>Row 2, Cell 2</td>
+            </tr>
+            <tr>
+              <td>Row 2, Cell 1</td>
+              <td>Row 2, Cell 2</td>
+            </tr>
+            <tr>
+              <td>Row 2, Cell 1</td>
+              <td>Row 2, Cell 2</td>
+            </tr>
+            <tr>
+              <td>Row 2, Cell 1</td>
+              <td>Row 2, Cell 2</td>
+            </tr>
+          </tbody>
+        </table>
     </li>
      
 </ul>
