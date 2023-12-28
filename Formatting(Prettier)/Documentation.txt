@@ -1,0 +1,21 @@
+1) Time analysis:
+formatXML()
+Time Complexity: O(N).
+
+append_spaces()
+Time Complexity: O(D (S1 S2)) = O(S1).
+Where D is the depth of the indentation, S1 is the stringbuilder orignal length, S2 is the length of the string being inserted, S1 is bigger than all of them in most cases so it was approxmited to O(S1).
+
+2) Space analysis:
+formateXML()
+Space Complexity: O(N)
+
+append_spaces()
+Space Complexity: O(S2)
+
+3) Logic
+I use the parsed file which is put into an array list each element of this array list is either <> or </> or a value.
+- If its a closing tag </> indent this tag with the white spaces and then decrease indent variable (check closed first so opened doesn't get mismatched).
+- else if its an openning tag <> increase indent variable then indent this tag.
+- else (value) indent with the previous indentation value.
+- This function only works as intended if the XML file is correct and has no missing tags.
