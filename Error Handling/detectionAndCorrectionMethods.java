@@ -1,17 +1,17 @@
-import java.sql.SQLOutput;
+package com.example.demo.ErrorHandling;
 import java.util.* ;
 import java.io.* ;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Main {
-        /*----------------Test-------------------------*/
+public class DetectionAndCorrectionMethods {
+    /*----------------Test-------------------------*/
     public static void main(String[] args)throws IOException {
 
-        String path = "C:\\Users\\mohmo\\Desktop\\example - copy.xml"; // put your xml file location
+        String path = "sample.xml"; // put your xml file location
         ArrayList<String> dataparsed = parseTagsFromFile(path);
-        System.out.println(detectError(path));
-        correctError(path);
+        //System.out.println(detectError(path));
+        //correctError(path);
 
     }
 //    public static ArrayList<String> detectMissingClosingTag2(ArrayList<String> parsedLines) {
@@ -64,207 +64,255 @@ public class Main {
 //        return missingClosingTags;
 //    }
 /////////////////////////////////////////////////////////////////////////////////////////////
-   /*------------------------ Abstract Methods------------------------- */
+    /*------------------------ Abstract Methods------------------------- */
 
-        public static void correctError(String path) throws IOException
-        {
-            ////////////////////////////////////////////
-            ArrayList<String> parsedTags = parseTagsFromFile(path);
-            //////////////////////////////////////////////
+    public static ArrayList<String> correctError(StringBuilder XMLText) throws Exception
+    {
+        ////////////////////////////////////////////
+        ArrayList<String> parsedTags = parseTagsFromFile(XMLText);
+        //////////////////////////////////////////////
 
-            /////////////////////////////////////////////
-            ArrayList<String> data1 = detectTagsErrors(parsedTags) ;
-            correctTagsErrors(data1,path);
-            ///////////////////////////////////////
+        /////////////////////////////////////////////
+        ArrayList<String> data1 = detectTagsErrors(parsedTags) ;
+        correctTagsErrors(data1,parsedTags);
+        ///////////////////////////////////////
 
-            ///////////////////////////////////////////
-            ArrayList<String>data2=detectMissingClosingTag(parsedTags);
-            correctMissingClosingTag(path,data2);
-            /////////////////////////////////////////
-        }
+        ///////////////////////////////////////////
+        ArrayList<String>data2=detectMissingClosingTag(parsedTags);
+        correctMissingClosingTag(parsedTags,data2);
+        /////////////////////////////////////////
+        return parsedTags;
+    }
 
-        public static ArrayList<Integer>detectError(String path)throws IOException{
-            ArrayList<Integer> detectionAll = new ArrayList<>();
-            ////////////////////////////////////////////
-            ArrayList<String> parsedTags = parseTagsFromFile(path);
-            //////////////////////////////////////////////
+    public static ArrayList<Integer>detectError(StringBuilder XMLText)throws Exception{
+        ArrayList<Integer> detectionAll = new ArrayList<>();
+        ////////////////////////////////////////////
+        ArrayList<String> parsedTags = parseTagsFromFile(XMLText);
+        //////////////////////////////////////////////
 
-            ////////////////////////////////////////////
-            ArrayList<String>messages1=detectTagsErrors(parsedTags);
-            ArrayList<Integer>detect1 = pickLastNumbers(messages1);
-            ///////////////////////////////////////////
+        ////////////////////////////////////////////
+        ArrayList<String>messages1=detectTagsErrors(parsedTags);
+        ArrayList<Integer>detect1 = pickLastNumbers(messages1);
+        ///////////////////////////////////////////
 
-            /////////////////////////////////////////
-            ArrayList<String>messages2=detectMissingClosingTag(parsedTags);
-            ArrayList<Integer>detect2 = pickLastNumbers(messages2);
-            //////////////////////////////////////////////
-            detectionAll.addAll(detect1);
-            detectionAll.addAll(detect2);
-            return detectionAll;
-        }
+        /////////////////////////////////////////
+        ArrayList<String>messages2=detectMissingClosingTag(parsedTags);
+        ArrayList<Integer>detect2 = pickLastNumbers(messages2);
+        //////////////////////////////////////////////
+        detectionAll.addAll(detect1);
+        detectionAll.addAll(detect2);
+        return detectionAll;
+    }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////////////////
-public static <string> ArrayList<String>detectMissingClosingTag(ArrayList<String>parsedLines){
-    String message ;
-    String currentLine ;
-    ArrayList<String> errorLines= new ArrayList<>() ;
-    Stack<String> stack = new Stack<>() ;
-    String openingTag ;
-    String closingTag ;
-    int lineNumber=0 ;
-    boolean flag =false;
-    for (lineNumber=0  ; lineNumber<parsedLines.size();lineNumber++) {
-        String line=parsedLines.get(lineNumber).trim();
-        if (isOpeningTagOnly(line) && !flag) {
-            flag =false ;
-            openingTag = removeAttributesFromOpeningTag(line.trim());
-            if(!stack.empty())
-            {
-                if (!stack.peek() .equals( openingTag )) {
-                    stack.push(openingTag);
-                } else {
-                    message = "MISSED CLOSING TAG FOR "+stack.peek()+"IN LINENUMBER " +lineNumber;
-                    errorLines.add(message);
-                    stack.pop();
-                    lineNumber--;
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    public static <string> ArrayList<String>detectMissingClosingTag(ArrayList<String>parsedLines){
+        String message ;
+        String currentLine ;
+        ArrayList<String> errorLines= new ArrayList<>() ;
+        Stack<String> stack = new Stack<>() ;
+        String openingTag ;
+        String closingTag ;
+        int lineNumber=0 ;
+        boolean flag =false;
+        for (lineNumber=0  ; lineNumber<parsedLines.size();lineNumber++) {
+            String line=parsedLines.get(lineNumber).trim();
+            if (isOpeningTagOnly(line) && !flag) {
+                flag =false ;
+                openingTag = removeAttributesFromOpeningTag(line.trim());
+                if(!stack.empty())
+                {
+                    if (!stack.peek() .equals( openingTag )) {
+                        stack.push(openingTag);
+                    } else {
+                        message = "MISSED CLOSING TAG FOR "+stack.peek()+"IN LINENUMBER " +lineNumber;
+                        errorLines.add(message);
+                        stack.pop();
+                        lineNumber--;
 //                        stack.push(openingTag);
+                    }
+                }
+                else {
+                    stack.push(openingTag);
                 }
             }
-            else {
-                stack.push(openingTag);
+            else if (containsOnlyText(line)||line.isEmpty()) {
+                flag=true;
+                continue;
             }
-        }
-        else if (containsOnlyText(line)||line.isEmpty()) {
-            flag=true;
-            continue;
-        }
-        else if (flag){
-            if (isClosingTagOnly(line)){
-                currentLine=stack.peek();
-                if (!currentLine.equals(line.replace("/",""))){
-                    message="MISSING CLOSING TAG FOR "+currentLine+"IN LINE NUMBER " +lineNumber ;
-                    errorLines.add(message);
+            else if (flag){
+                if (isClosingTagOnly(line)){
+                    currentLine=stack.peek();
+                    if (!currentLine.equals(line.replace("/",""))){
+                        message="MISSING CLOSING TAG FOR "+currentLine+"IN LINE NUMBER " +lineNumber ;
+                        errorLines.add(message);
+                        stack.pop();
+                        currentLine="";
+                        flag =false;
+                        lineNumber--;
+                    }
+                    else {
+                        stack.pop();
+                        flag = false;
+
+                    }
+                }
+                else if (isOpeningTagOnly(line)){
+                    currentLine=stack.peek();
+                    if (currentLine.equals(line)){
+                        message="MISSING CLOSING TAG FOR "+currentLine+"IN LINE NUMBER " +lineNumber ;
+                        errorLines.add(message);
+                        stack.pop();
+                        currentLine="";
+                        flag = false;
+                        lineNumber--;
+                    }
+                    else {
+                        message="MISSING CLOSING TAG FOR "+currentLine+"IN LINE NUMBER " +lineNumber ;
+                        errorLines.add(message);
+                        lineNumber--;
+                        stack.pop();
+                        currentLine="";
+                        flag=false;
+                    }
+                }
+                else {
+                    message="MISSING CLOSING TAG FOR "+stack.peek()+"LINE NUMBER IS "+lineNumber ;
                     stack.pop();
-                    currentLine="";
                     flag =false;
-                    lineNumber--;
-                }
-                else {
-                    stack.pop();
-                    flag = false;
-
-                }
-            }
-            else if (isOpeningTagOnly(line)){
-                currentLine=stack.peek();
-                if (currentLine.equals(line)){
-                    message="MISSING CLOSING TAG FOR "+currentLine+"IN LINE NUMBER " +lineNumber ;
-                    errorLines.add(message);
-                    stack.pop();
-                    currentLine="";
-                    flag = false;
-                    lineNumber--;
-                }
-                else {
-                    message="MISSING CLOSING TAG FOR "+currentLine+"IN LINE NUMBER " +lineNumber ;
                     errorLines.add(message);
                     lineNumber--;
-                    stack.pop();
-                    currentLine="";
-                    flag=false;
                 }
             }
-            else {
-                message="MISSING CLOSING TAG FOR "+stack.peek()+"LINE NUMBER IS "+lineNumber ;
-                stack.pop();
-                flag =false;
-                errorLines.add(message);
-                lineNumber--;
+
+            else  if (isClosingTagOnly(line) && !stack.empty()){
+                flag = false;
+                closingTag=getOpeningAndClosingTags(line).getFirst().replace("/","");
+                closingTag="<"+closingTag+">";
+                if (!stack.peek().equals(closingTag)){
+                    message = "MISSED CLOSING TAG FOR "+stack.peek()+"IN LINE NUMBER " +lineNumber;
+                    errorLines.add(message);
+                    stack.pop();
+                    lineNumber--;
+                }
+                else stack.pop();
             }
         }
+        while (!stack.empty()) {
+            message ="MISSING CLOSING TAG FOR "+stack.peek()+" IN LINE NUMBER "+lineNumber;
+            stack.pop();
+            errorLines.add(message);
+            lineNumber++;
+        }
+        return errorLines ;
+    }
 
-        else  if (isClosingTagOnly(line) && !stack.empty()){
-            flag = false;
-            closingTag=getOpeningAndClosingTags(line).getFirst().replace("/","");
-            closingTag="<"+closingTag+">";
-            if (!stack.peek().equals(closingTag)){
-                message = "MISSED CLOSING TAG FOR "+stack.peek()+"IN LINE NUMBER " +lineNumber;
-                errorLines.add(message);
-                stack.pop();
-                lineNumber--;
-            }
-            else stack.pop();
+    public static void correctMissingClosingTag (String path,ArrayList<String> messages)
+    {
+        for (String message : messages){
+            String closingTag= "</"+extractLowerCaseWords(message).getFirst()+">";
+            writeToLine(path,extractLastNumber(message),closingTag);
+            closingTag="";
         }
     }
-    while (!stack.empty()) {
-        message ="MISSING CLOSING TAG FOR "+stack.peek()+" IN LINE NUMBER "+lineNumber;
-        stack.pop();
-        errorLines.add(message);
-        lineNumber++;
+    public static void correctMissingClosingTag (ArrayList<String> lines,ArrayList<String> messages){
+        for (String message : messages){
+            String closingTag= "</"+extractLowerCaseWords(message).getFirst()+">";
+            writeToLine(lines,extractLastNumber(message),closingTag);
+            closingTag="";
+        }
     }
-    return errorLines ;
-}
-
-public static void correctMissingClosingTag (String path,ArrayList<String> messages)
-{
-    for (String message : messages){
-        String closingTag= "</"+extractLowerCaseWords(message).getFirst()+">";
-        writeToLine(path,extractLastNumber(message),closingTag);
-        closingTag="";
-    }
-}
 /////////////////////////////////////////////////////////////////////////////
 
 
-/////////////////////////////////////////////////////////////////////////////
-public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
-    String message = " ";
-    int lineNumber=1;
-    String openingTag , closingTag ;
-    ArrayList<String> tags =new ArrayList<>() ;
-    ArrayList<String>errors=new ArrayList<>() ;
-    Stack<String>stack =new Stack<>();
-    for (String line : lines){
-        line=line.trim();
-        tags=getOpeningAndClosingTags(line);
-        if (tags.size()>1) {
-            openingTag=tags.get(0);
-            closingTag=tags.get(1).replace("/","");
-            stack.push(openingTag);
-            if (stack.peek().equals(closingTag)){
-                stack.pop();
+    /////////////////////////////////////////////////////////////////////////////
+    public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
+        String message = " ";
+        int lineNumber=1;
+        String openingTag , closingTag ;
+        ArrayList<String> tags =new ArrayList<>() ;
+        ArrayList<String>errors=new ArrayList<>() ;
+        Stack<String>stack =new Stack<>();
+        for (String line : lines){
+            line=line.trim();
+            tags=getOpeningAndClosingTags(line);
+            if (tags.size()>1) {
+                openingTag=tags.get(0);
+                closingTag=tags.get(1).replace("/","");
+                stack.push(openingTag);
+                if (stack.peek().equals(closingTag)){
+                    stack.pop();
 
+                }
+                else {
+                    System.out.println(openingTag);
+                    System.out.println(closingTag);
+                    message="MISMATCH BETWEEN OPENING TAG "+openingTag+" AND CLOSING TAG "+closingTag+" IN LINE NUMBER "+lineNumber ;
+                    errors.add(message);
+                    stack.pop();
+
+                }
             }
-            else {
-                System.out.println(openingTag);
-                System.out.println(closingTag);
-                message="MISMATCH BETWEEN OPENING TAG "+openingTag+" AND CLOSING TAG "+closingTag+" IN LINE NUMBER "+lineNumber ;
+            else if (startsWithOpeningTagAndText(line)){
+                openingTag=tags.get(0);
+                message="MISSING CLOSING TAG FOR OPENING TAG "+openingTag +" IN LINE NUMBER "+lineNumber;
                 errors.add(message);
-                stack.pop();
+
+            }
+            else if(startsWithTextAndHasClosingTags(line)){
+                closingTag=tags.get(0).replace("/","");
+                message="MISSING OPENING TAG FOR CLOSING TAG "+closingTag +" IN LINE NUMBER "+lineNumber;
+                errors.add(message);
+
+            }
+
+            lineNumber++;
+        }
+        return errors;
+    }
+    public static void correctTagsErrors(ArrayList<String> errorMessages,ArrayList<String> lines){
+        for (String message : errorMessages){
+            String closingTag="" ;
+            String openingTag="" ;
+            String lineFromFile="" ;
+            String longerTag="" ;
+            if (message.contains("MISSING CLOSING TAG FOR OPENING TAG")){
+                closingTag = extractLowerCaseWords(message).getFirst();
+                closingTag ="</"+closingTag+">" ;
+                lineFromFile = getSpecificLine(lines , extractLastNumber(message));
+                lineFromFile+=closingTag;
+                writeToLine(lines,extractLastNumber(message),lineFromFile);
+                lineFromFile="";
+            }
+            if (message.contains("MISSING OPENING TAG FOR CLOSING TAG")){
+                openingTag=extractLowerCaseWords(message).getFirst();
+                openingTag="<"+openingTag+">" ;
+                lineFromFile = getSpecificLine(lines,extractLastNumber(message));
+                lineFromFile = openingTag+lineFromFile ;
+                lineFromFile=removeSpaces(lineFromFile);
+                writeToLine(lines,extractLastNumber(message),lineFromFile);
+                lineFromFile = "" ;
+            }
+            if(message.contains("MISMATCH BETWEEN OPENING TAG")){
+                openingTag=extractLowerCaseWords(message).getFirst();
+                closingTag=extractLowerCaseWords(message).getLast();
+                if (closingTag.equals("id") || openingTag.equals("id")&& isAnyTextBetweenTagsNumber(getSpecificLine(lines,extractLastNumber(message))) ){
+                    longerTag = "id" ;
+                }
+                else {
+                    longerTag = findLongerString(openingTag, closingTag);
+                }
+                lineFromFile=getSpecificLine(lines,extractLastNumber(message));
+                lineFromFile=removeTags(lineFromFile);
+                lineFromFile ="<"+longerTag+">"+lineFromFile+"</"+longerTag+">";
+                lineFromFile=removeSpaces(lineFromFile);
+                writeToLine(lines,extractLastNumber(message),lineFromFile);
 
             }
         }
-        else if (startsWithOpeningTagAndText(line)){
-            openingTag=tags.get(0);
-            message="MISSING CLOSING TAG FOR OPENING TAG "+openingTag +" IN LINE NUMBER "+lineNumber;
-            errors.add(message);
-
-        }
-        else if(startsWithTextAndHasClosingTags(line)){
-            closingTag=tags.get(0).replace("/","");
-            message="MISSING OPENING TAG FOR CLOSING TAG "+closingTag +" IN LINE NUMBER "+lineNumber;
-            errors.add(message);
-
-        }
-
-        lineNumber++;
     }
-    return errors;
-}
-
     public static void correctTagsErrors (ArrayList<String> errorMessages  , String path){
 
         for (String message : errorMessages){
@@ -285,14 +333,14 @@ public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
                 openingTag="<"+openingTag+">" ;
                 lineFromFile = getSpecificLine(path,extractLastNumber(message));
                 lineFromFile = openingTag+lineFromFile ;
-                lineFromFile=removeSpaces(lineFromFile);
+                //lineFromFile=removeSpaces(lineFromFile);
                 writeToLine(path,extractLastNumber(message),lineFromFile);
                 lineFromFile = "" ;
             }
             if(message.contains("MISMATCH BETWEEN OPENING TAG")){
                 openingTag=extractLowerCaseWords(message).getFirst();
                 closingTag=extractLowerCaseWords(message).getLast();
-                if (closingTag.equals("id") || openingTag.equals("id")&& isAnyTextBetweenTagsNumber(getSpecificLine(path,extractLastNumber(message))) ){
+                if ((closingTag.equals("id") || openingTag.equals("id")) && isAnyTextBetweenTagsNumber(getSpecificLine(path,extractLastNumber(message))) ){
                     longerTag = "id" ;
                 }
                 else {
@@ -301,7 +349,7 @@ public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
                 lineFromFile=getSpecificLine(path,extractLastNumber(message));
                 lineFromFile=removeTags(lineFromFile);
                 lineFromFile ="<"+longerTag+">"+lineFromFile+"</"+longerTag+">";
-                lineFromFile=removeSpaces(lineFromFile);
+                //lineFromFile=removeSpaces(lineFromFile);
                 writeToLine(path,extractLastNumber(message),lineFromFile);
 
             }
@@ -312,8 +360,8 @@ public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
 
 
 
-////////////////////////////////////////////////////////////////////
-            /*-----------Helper Methods ----------------*/
+    ////////////////////////////////////////////////////////////////////
+    /*-----------Helper Methods ----------------*/
     public static String removeTags(String line) {
         return line.replaceAll("<[^>]*>", "");
     }
@@ -325,6 +373,9 @@ public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
         } else {
             return "Both strings are of equal length";
         }
+    }
+    public static String getSpecificLine(ArrayList<String> lines,int lineNumber){
+        return lines.get(lineNumber-1);
     }
     public static String getSpecificLine(String filePath, int lineNumber) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -369,15 +420,20 @@ public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
     }
 
     public static ArrayList<String> parseTagsFromFile(String filePath) throws IOException {
-     File file = new File(filePath);
-     Scanner scan = new Scanner(file) ;
-     ArrayList<String> data = new ArrayList<>();
-     String line ;
-     while (scan.hasNextLine()){
-         line = scan.nextLine().trim();
-         data.add(line);
-     }
-     return data ;
+        File file = new File(filePath);
+        Scanner scan = new Scanner(file) ;
+        ArrayList<String> data = new ArrayList<>();
+        String line ;
+        while (scan.hasNextLine()){
+            line = scan.nextLine().trim();
+            data.add(line);
+        }
+        return data ;
+    }
+    public static ArrayList<String> parseTagsFromFile(StringBuilder XMLText) throws Exception{
+        String lines = XMLText.toString();
+        ArrayList<String> data = new ArrayList<>(Arrays.asList(lines.split("\n")));
+        return data;
     }
     public static ArrayList<String> getOpeningAndClosingTags(String line) {
         ArrayList<String> tags = new ArrayList<>();
@@ -401,11 +457,11 @@ public static ArrayList<String> detectTagsErrors(ArrayList<String> lines ){
         return matcher.matches();
     }
 
-public static boolean isOpeningTagOnly(String line) {
-    Pattern pattern = Pattern.compile("^<([^\\s>/]+)(\\s+[^>]+)?>$");
-    Matcher matcher = pattern.matcher(line);
-    return matcher.matches();
-}
+    public static boolean isOpeningTagOnly(String line) {
+        Pattern pattern = Pattern.compile("^<([^\\s>/]+)(\\s+[^>]+)?>$");
+        Matcher matcher = pattern.matcher(line);
+        return matcher.matches();
+    }
     public static boolean isClosingTagOnly(String line) {
         Pattern pattern = Pattern.compile("^</([^\\s>]*)>$");
         Matcher matcher = pattern.matcher(line);
@@ -440,6 +496,9 @@ public static boolean isOpeningTagOnly(String line) {
         }
 
         return openingTag; // Return unchanged if no match is found
+    }
+    public static void writeToLine(ArrayList<String> lines,int lineNumber,String content){
+        lines.set(lineNumber-1,content);
     }
     public static void writeToLine(String filePath, int lineNumber, String content) {
         try {
