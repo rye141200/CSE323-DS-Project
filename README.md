@@ -19,7 +19,7 @@
     <li>
         <h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks</h2>
         <details>
-        <summary><h3><i>This project was divided into the following parts as basic building blocks:(click for more info)</i></h3></summary>
+        <summary><h3><i>This project was divided into the following parts as basic building blocks</i></h3></summary>
         <ul>
             <li><strong>File reading:</strong> <i>reads the input file, parses it and creates a list of all the elements inside the file</i></li>
             <li><strong>Error correction:</strong> <i>corrects missing tags (opening or closing) and mismatching tags</i></li>
