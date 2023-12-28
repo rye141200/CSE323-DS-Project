@@ -1,4 +1,5 @@
 <h1><img src="Styling/xml.png" width= 40 height=40/><img src="Styling/XMLParser.svg" alt="XMLParser"/></h1>
+<ul>
         <h2><img src="Styling/overview icon better.png" width= 40 height=40/> Project overview</h2>
         <details>
         <summary><h3><i>This program aims to:(click for more info)</i></h3></summary>
@@ -173,3 +174,4 @@
         </table>
         <h2><img src="Styling/youtube icon.png" width=30 height=30/> YouTube video:</h2>
         <h3><a href="https://youtu.be/aJVQUJk_QRc">Amazing video awaits!</a></h3>
+</ul>
