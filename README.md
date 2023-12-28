@@ -18,20 +18,20 @@
         <h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks:</h2>
         <h3><i>This project was divided into the following parts as basic building blocks:</i></h3>
         <ul>
-            <li>File reading</li>
-            <li>Error correction</li>
-            <li>Formatting</li>
-            <li>Parsing</li>
-            <li>Tree</li>
-            <li>JSON Conversion</li>
-            <li>Minifying</li>
-            <li>Compression</li>
-            <li>Graph</li>
-            <li>Tree to Graph</li>
-            <li>Graph Visualization (3rd party library)</li>
-            <li>SNA (Social Network Analysis)</li>
-            <li>Undo/Redo</li>
-            <li>GUI</li>
+            <li><strong>File reading:</strong> <i>reads the input file, parses it and creates a list of all the elements inside the file</i></li>
+            <li><strong>Error correction:</strong> <i>corrects missing tags (opening or closing) and mismatching tags</i></li>
+            <li><strong>Formatting:</strong> <i>prettifies the file with identation of 2 spaces </i></li>
+            <li><strong>Parsing:</strong> <i>takes the input file from file reading block, parses them into useful data to create a tree analogous to HTML DOM tree</i></li>
+            <li><strong>Tree:</strong> <i>class used to create the tree</i></li>
+            <li><strong>JSON Conversion:</strong> <i>uses the tree created to convert it to JSON</i></li>
+            <li><strong>Minifying:</strong> <i>takes input from file reading, minifies the file by eliminating all \n</i></li>
+            <li><strong>Compression:</strong> <i>compresses the input file from file reading block, via encoding techniques</i></li>
+            <li><strong>Graph:</strong> <i>class used as a blueprint for the graph of social networks </i></li>
+            <li><strong>Tree to Graph:</strong> <i>takes the XMLTree as input from Parsing block, converts it to a suitable tree</i></li>
+            <li><strong>Graph Visualization (3rd party library)</strong>: <i>social graph created would be adapted to be compatible with this library which shows the visual graph</i> <a href="https://github.com/brunomnsilva/JavaFXSmartGraph">smartgraph library</a></li>
+            <li><strong>SNA (Social Network Analysis)</strong>: <i>uses the social graph as input from Tree to Graph block, to make social network analysis</i></li>
+            <li><strong>Undo/Redo:</strong> <i>takes input as the text, implemented using stack, undoing and redoing every operation</i></li>
+            <li><strong>GUI:</strong> <i>created using JavaFX</i></li>
         </ul>
     </li>
     <li>
@@ -102,7 +102,7 @@
               <td>O(m), where m is the total number of followers between the two users.</td>
             </tr>
             <tr>
-              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L84">suggestFollowers</a></td>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L84">suggestFollowers()</a></td>
               <td>O(n^2 * m), where n is the number of users and m is the average number of followers per user.</td>
             </tr>
             <tr>
@@ -118,7 +118,7 @@
               <td>O(1)</td>
             </tr>
             <tr>
-              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/UndoRedo.java#L54">redo</a></td>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/UndoRedo.java#L54">redo()</a></td>
               <td>O(1)</td>
             </tr>
           </tbody>
@@ -134,34 +134,46 @@
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>ID</th>
+              <th><strong>Name</strong></th>
+              <th><strong>ID</strong></th>
+              <th><strong>GitHub username</strong></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Ahmad Youssef Mahfouz</td>
               <td>2002238</td>
+              <td>rye141200</td>
+            </tr>
+            <tr>
+              <td>Youssef Wael Hamdy Ibrahim</td>
+              <td>2001430</td>
+              <td>youssefashmawy</td>
             </tr>
             <tr>
               <td>Mohamed Mostafa Mahmoud</td>
               <td>2001299</td>
+              <td>mohamed-most</td>
             </tr>
             <tr>
               <td>Fathy Abdlhady Fathy</td>
               <td>2001152</td>
+               <td>FathyAbdlhady</td>
             </tr>
             <tr>
               <td>Yousef Shawky Mohamed</td>
               <td>2001500</td>
+              <td>thedarkevil987</td>
             </tr>
             <tr>
               <td>Omar Saleh Mohamed</td>
               <td>2001993</td>
+              <td>MrMariodude</td>
             </tr>
             <tr>
               <td>Abddullah Mohammed Hassan</td>
               <td>2001803</td>
+              <td>AntiHexCode</td>
             </tr>
           </tbody>
         </table>
