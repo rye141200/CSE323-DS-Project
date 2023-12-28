@@ -133,7 +133,11 @@
         <h2><img src="Styling/screenshots icon.png" width=30 height=30/> Screenshots</h2>
         <ul>
         <details>
-                <summary><h3><i>Samples of file while running:</i></h3></summary>
+                <summary><h3><i>Samples of file while running:</i></h3></summary>                                                                                                
+                 <img src="Styling/1.jpg" width=512 height=512/>  <img src="Styling/2.jpg" width=512 height=512/> 
+                 <img src="Styling/3.jpg" width=512 height=512/>  <img src="Styling/4.jpg" width=512 height=512/> 
+                 <img src="Styling/5.jpg" width=512 height=512/>  <img src="Styling/6.jpg" width=512 height=512/> 
+                 <img src="Styling/7.jpg" width=512 height=512/>                                                  
         </details>
         </ul>
         <h2><img src="Styling/team members icon.png" width=30 height=30/> Team members</h2>
