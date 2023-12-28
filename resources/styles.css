@@ -1,0 +1,168 @@
+/*-----buttons-----*/
+#button1 {
+    -fx-background-color: #191919;
+    -fx-background-radius: 0;
+}
+
+#button1:hover {
+    -fx-background-color: #E3651D;
+}
+
+#button1:pressed {
+    -fx-background-color: #E3651D;
+}
+
+#button2 {
+    -fx-background-color: #191919;
+    -fx-background-radius: 0;
+}
+
+#button2:hover {
+    -fx-background-color: #E3651D;
+}
+
+#button2:pressed {
+    -fx-background-color: #191919;
+}
+
+#button3 {
+    -fx-background-color: #191919;
+    -fx-background-radius: 0;
+}
+
+#button3:hover {
+    -fx-background-color: #E3651D;
+}
+
+#button3:pressed {
+    -fx-background-color: #E3651D;
+}
+
+#button4 {
+    -fx-background-color: #191919;
+    -fx-background-radius: 0;
+}
+
+#button4:hover {
+    -fx-background-color: #E3651D;
+}
+
+#button4:pressed {
+    -fx-background-color: #E3651D;
+}
+
+#button5 {
+    -fx-background-color: #191919;
+    -fx-background-radius: 0;
+}
+
+#button5:hover {
+    -fx-background-color: #E3651D;
+}
+
+#button5:pressed {
+    -fx-background-color: #E3651D;
+}
+
+#button6 {
+    -fx-background-color: #191919;
+    -fx-background-radius: 0;
+}
+
+#button6:hover {
+    -fx-background-color: #E3651D;
+}
+
+#button6:pressed {
+    -fx-background-color: #E3651D;
+}
+/*-----buttons-----*/
+/*----Text area----*/
+.textArea{
+    -fx-border-color :  #191919;
+    -fx-border-width: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 20px;
+}
+/*----Text area----*/
+/* Checkbox */
+.checkbox {
+    -fx-background-color: #191919;
+    -fx-text-fill: #E3651D;
+    -fx-padding: 10px;
+}
+/* Checkbox */
+/*--------Tab pane------------*/
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color:  #191919;
+    -fx-border-radius:5px;
+}
+.tab-pane .tab:selected {
+    -fx-background-color: #E3651D;
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 5 5 0 0;
+}
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #191919;
+    -fx-font-weight: bold;
+    -fx-padding: 0 10 0 10;
+}
+.tab-pane:top *.tab-header-area {
+    -fx-padding: 10 0 0 0;
+}
+.tab-pane {
+    -fx-background-color: transparent;
+    -fx-tab-min-width: 25px;
+    -fx-tab-min-height: 25px;
+    -fx-tab-max-height: 66px;
+}
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-border-width: 0;
+    -fx-border-insets: 0 0 0 0;
+    -fx-border-radius: 0;
+}
+.tab:hover {
+    -fx-background-color: #E3651D;
+}
+/*--------Tab pane------------*/
+/*---------MenuBar------------*/
+.MenuBar {
+    -fx-background-color: #E3651D;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+.menu-item {
+    -fx-text-fill: white;
+}
+
+.menu-item:selected {
+    -fx-background-color: #191919;
+}
+
+
+/*---------MenuBar------------*/
+
+/*Split Pane*/
+.split-pane > .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+}
+
+.TreeView{
+    -fx-background-radius: 15;
+    -fx-border-color :  #191919;
+    -fx-border-width : 5;
+    -fx-border-radius: 10;
+}
+.cell{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #191919;
+}
+
+
