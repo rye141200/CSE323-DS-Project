@@ -124,5 +124,16 @@
           </tbody>
         </table>
     </li>
-     
+    <li>
+        <h2><img src="Styling/screenshots icon.png" width=30 height=30/> Screenshots:</h2>
+        <h3><i>Samples of file while running:</i></h3>
+    </li>
+    <li>
+        <h2><img src="Styling/team members icon.png" width=30 height=30/> Team members:</h2>
+        <h3><i>Members:</i></h3>
+    </li>
+    <li>
+        <h2><img src="Styling/youtube icon.png" width=30 height=30/> YouTube video:</h2>
+        <h3><a href="#">Amazing video awaits!</a></h3>
+    </li>
 </ul>
