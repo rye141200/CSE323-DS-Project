@@ -1,0 +1,48 @@
+the idea of the detection and correction part is that we divide the detection into two parts 
+
+------------------------------part1----------------------------------
+that we detect errors in the same line whatever it's missing closing tag or missing opening tag or mismatch between closing tag and openining tag 
+
+the detection methods return error message saying type of error missing tag or mismatch , also it gives number line contain error 
+
+e.g 
+<root>
+  <gender>male          -----> message =  "MISSING OPENING TAG FOR <gender> IN LINE NUMBER 2"
+  <name>mohamed<\id>    -----> message =  "MIAMATCH BETWEEN <name> AND <id> IN LINE NUMBER 3"
+    1</id>          	-----> message =  "MISSING CLOSING TAG FOR <id> IN LINE NUMBER 4"	
+<\root>														
+			dataParsedByLine is arraylist of strings contain lines in XML file 		
+			detectionTags(arraylist<string> dataParsedByLine): return arraylist of messages that says type of error and line number where error happens
+
+then 
+
+	correctionTags()---> function takes the messages and correct the error according to line number and type of error 
+---------------------------------------------------------------------------
+
+------------------------------part2----------------------------------
+we detect error of missing closing tag but not in the same line 
+
+the detection methods return error message saying type of error missing tag or mismatch , also it gives number line contain error 
+
+e.g 
+<root>
+  <gender>male         
+  <name>mohamed<\id>    
+    1</id>          		
+			-----> message =  "MISSING CLOSING TAG FOR <root> IN LINE NUMBER 5"
+										
+			dataParsedByLine is arraylist of strings contain lines in XML file 		
+			detectionMissingClosingTag(arraylist<string> dataParsedByLine): return arraylist of messages that says type of error and line number where error happens
+			the idea of this function that we push any opening Tag into the stack and if the closing tag matches the the top of the stack then pop from stack 
+			if no closing tag is found 
+			1)if element in this next line is opening tag so there is missing closing tag 
+				and then push this closing tag in the stack 
+			2) if element in this next line is closing tag and this tag is not closing for opening tag so there is missing closing tag 
+					then pop all opening tags untill you found the opening tag for this closing tag this means that 
+						all all the poped opening tag didn't have their closing tags  
+then 
+
+	correctionMissingClosingTag(String path,ArrayList<String> messages)---> function takes the messages and correct the error according to line number and type of error
+	the idea in this method is putting closing tag from the given message into the given line and wit
+---------------------------------------------------------------------------------------------------------------------
+  then collect all two types of detections into one arraylist contains all errors in file 
