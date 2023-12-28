@@ -2,7 +2,7 @@
 <h2>In order to run the exe file, please have JDK 21 setup, if you don't have it download it from this link: <a href="https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe">JDK 21 Windows</a> 
         make sure it is in "C:\Program Files\Java".</h2>
 <ul>
-        <h2><img src="Styling/overview icon better.png" width= 40 height=40/> Project overview</h2>
+        <h2><img src="Styling/search.png" width= 40 height=40/> Project overview</h2>
         <ul>
         <details>
         <summary><h3><i>This program aims to:(click for more info)</i></h3></summary>
