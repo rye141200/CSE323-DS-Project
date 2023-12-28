@@ -87,19 +87,39 @@
             </tr>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/5b60f23b15ea2be4f949eafcca17f456befbab64/Visualization/TreeToGraph.java#L22">convertTreeToGraph()</a></td>
-              <td>Row 2, Cell 2</td>
+              <td>O(n^3), where n is the number of users in graph</td>
             </tr>
             <tr>
-              <td>Row 2, Cell 1</td>
-              <td>Row 2, Cell 2</td>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L26">getMostInfluencer()</a></td>
+              <td>O(nlogn), where n is the number of users</td>
             </tr>
             <tr>
-              <td>Row 2, Cell 1</td>
-              <td>Row 2, Cell 2</td>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L39">getMostActive()</a></td>
+              <td>O(n*m), where n is number of users, and m is the average number of followers per user</td>
             </tr>
             <tr>
-              <td>Row 2, Cell 1</td>
-              <td>Row 2, Cell 2</td>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L64">getMutualFollower()</a></td>
+              <td>O(m), where m is the total number of followers between the two users.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L84">suggestFollowers</a></td>
+              <td>O(n^2 * m), where n is the number of users and m is the average number of followers per user.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L105">searchByParagraph()</a></td>
+              <td>O(n * m), where n is the number of users and m is the average number of posts per user.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/SNA.java#L84">searchByTopic()</a></td>
+              <td>O(n * m * k), where n is the number of users, m is the average number of posts per user, and k is the average number of topics per post.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/UndoRedo.java#L46">undo()</a></td>
+              <td>O(1)</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/dd1954fbb63cc3ba6e6d6ec1596754bc29a6e43d/SNA_Undo/UndoRedo.java#L54">redo</a></td>
+              <td>O(1)</td>
             </tr>
           </tbody>
         </table>
