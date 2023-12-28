@@ -3,7 +3,7 @@
     <li>
         <h2><img src="Styling/overview icon better.png" width= 40 height=40/> Project overview</h2>
         <details>
-        <summary><h3><i>This program aims to: (click for more info)</i></h3></summary>
+        <summary><h3><i>This program aims to:(click for more info)</i></h3></summary>
         <ul>
             <li>Parse XML text</li>
             <li>Converts it to JSON</li>
@@ -19,7 +19,7 @@
     <li>
         <h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks</h2>
         <details>
-        <summary><h3><i>This project was divided into the following parts as basic building blocks: (click for more info)</i></h3></summary>
+        <summary><h3><i>This project was divided into the following parts as basic building blocks:(click for more info)</i></h3></summary>
         <ul>
             <li><strong>File reading:</strong> <i>reads the input file, parses it and creates a list of all the elements inside the file</i></li>
             <li><strong>Error correction:</strong> <i>corrects missing tags (opening or closing) and mismatching tags</i></li>
