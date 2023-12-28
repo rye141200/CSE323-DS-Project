@@ -131,6 +131,40 @@
     <li>
         <h2><img src="Styling/team members icon.png" width=30 height=30/> Team members:</h2>
         <h3><i>Members:</i></h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ahmad Youssef Mahfouz</td>
+              <td>2002238</td>
+            </tr>
+            <tr>
+              <td>Mohamed Mostafa Mahmoud</td>
+              <td>2001299</td>
+            </tr>
+            <tr>
+              <td>Fathy Abdlhady Fathy</td>
+              <td>2001152</td>
+            </tr>
+            <tr>
+              <td>Yousef Shawky Mohamed</td>
+              <td>2001500</td>
+            </tr>
+            <tr>
+              <td>Omar Saleh Mohamed</td>
+              <td>2001993</td>
+            </tr>
+            <tr>
+              <td>Abddullah Mohammed Hassan</td>
+              <td>2001803</td>
+            </tr>
+          </tbody>
+        </table>
     </li>
     <li>
         <h2><img src="Styling/youtube icon.png" width=30 height=30/> YouTube video:</h2>
