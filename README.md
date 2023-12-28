@@ -133,7 +133,9 @@
         <h2><img src="Styling/screenshots icon.png" width=30 height=30/> Screenshots</h2>
         <h3><i>Samples of file while running:</i></h3>
         <h2><img src="Styling/team members icon.png" width=30 height=30/> Team members</h2>
-        <h3><i>Members:</i></h3>
+        <ul>
+        <details>
+        <summary><h3><i>Members:</i></h3></summary>
         <table>
           <thead>
             <tr>
@@ -180,6 +182,8 @@
             </tr>
           </tbody>
         </table>
+        </details>
+        </ul>
         <h2><img src="Styling/youtube icon.png" width=30 height=30/> YouTube video:</h2>
         <h3><a href="https://youtu.be/aJVQUJk_QRc">Amazing video awaits!</a></h3>
 </ul>
