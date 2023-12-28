@@ -180,6 +180,6 @@
     </li>
     <li>
         <h2><img src="Styling/youtube icon.png" width=30 height=30/> YouTube video:</h2>
-        <h3><a href="#">Amazing video awaits!</a></h3>
+        <h3><a href="https://youtu.be/aJVQUJk_QRc">Amazing video awaits!</a></h3>
     </li>
 </ul>
