@@ -1,6 +1,7 @@
 <h1><img src="Styling/xml.png" width= 40 height=40/><img src="Styling/XMLParser.svg" alt="XMLParser"/></h1>
 <ul>
         <h2><img src="Styling/overview icon better.png" width= 40 height=40/> Project overview</h2>
+        <ul>
         <details>
         <summary><h3><i>This program aims to:(click for more info)</i></h3></summary>
         <ul>
@@ -14,7 +15,9 @@
             <li>Saves JSON files and compatible with any XML file (supports XML with attributes)</li>
         </ul>
         </details>
+        </ul>
         <h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks</h2>
+        <ul>
         <details>
         <summary><h3><i>This project was divided into the following parts as basic building blocks</i></h3></summary>
         <ul>
@@ -34,8 +37,11 @@
             <li><strong>GUI:</strong> <i>created using JavaFX</i></li>
         </ul>
        </details>
+        </ul>
         <h2><img src="Styling/time analysis.png" width=30 height=30/> Time complexity analysis</h2>
-        <h3><i>Time complexity analysis of each main method:</i></h3>
+        <ul>
+        <details>
+        <summary><h3><i>Time complexity analysis of each main method:</i></h3></summary>
         <table>
           <thead>
             <tr>
@@ -122,6 +128,8 @@
             </tr>
           </tbody>
         </table>
+        </details>
+        </ul>
         <h2><img src="Styling/screenshots icon.png" width=30 height=30/> Screenshots</h2>
         <h3><i>Samples of file while running:</i></h3>
         <h2><img src="Styling/team members icon.png" width=30 height=30/> Team members</h2>
