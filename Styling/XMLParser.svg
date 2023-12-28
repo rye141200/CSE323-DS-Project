@@ -8,7 +8,7 @@
 
     text {
       font-family: Arial, sans-serif;
-      font-size: 24px;
+      font-size: 36px;
       font-weight: bold;
       animation: colorTransition 4s infinite;
     }
