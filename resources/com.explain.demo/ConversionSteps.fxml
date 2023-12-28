@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="homePage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: #E3651D;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+   <children>
+      <AnchorPane fx:id="ChoicesPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="203.0" style="-fx-background-color: #191919;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox layoutY="107.0">
+               <children>
+                  <Button fx:id="button1" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onHomePageClick" prefHeight="40.0" prefWidth="203.0" text="Home Screen" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../home%20(4).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="button2" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onClickConversionSteps" prefHeight="40.0" prefWidth="203.0" style="-fx-background-color: #E3651D;" text="Conversion steps" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../parsing%20(1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <ImageView fx:id="logo" fitHeight="96.0" fitWidth="153.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="20.0">
+               <image>
+                  <Image url="@../../../mini%20logo%20(1).png" />
+               </image>
+            </ImageView>
+            <MenuBar fx:id="menuBar" layoutY="-2.0" prefHeight="30.0" prefWidth="203.0" style="-fx-background-color: #191919;" styleClass="MenuBar" stylesheets="@styles.css">
+               <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                        <MenuItem fx:id="FileLoad" mnemonicParsing="false" onAction="#onLoadFileClick" text="Load File" />
+                        <MenuItem mnemonicParsing="false" onAction="#onCloseClick" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onDeleteClick" text="Delete" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Credit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+      <TabPane layoutX="202.0" prefHeight="534.0" prefWidth="698.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="step1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="570.0" layoutY="25.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="8.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="fileFormatted" layoutX="13.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="textArea2" layoutX="364.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                        <Label alignment="CENTER" layoutX="196.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="User input">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="836.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="Parsed">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="step1">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="570.0" layoutY="25.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="8.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="textArea_11" layoutX="13.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="textArea21" layoutX="364.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                        <Label alignment="CENTER" layoutX="196.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="User input">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="836.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="Parsed">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="step1">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="570.0" layoutY="25.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="8.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="textArea_12" layoutX="13.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="textArea22" layoutX="364.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                        <Label alignment="CENTER" layoutX="196.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="User input">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="836.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="Parsed">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="step1">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="570.0" layoutY="25.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="8.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="textArea_13" layoutX="13.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="textArea23" layoutX="364.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                        <Label alignment="CENTER" layoutX="196.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="User input">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="836.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="Parsed">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="step1">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="570.0" layoutY="25.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="8.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="textArea_14" layoutX="13.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="textArea24" layoutX="364.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                        <Label alignment="CENTER" layoutX="196.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="User input">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="836.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="Parsed">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="step1">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="570.0" layoutY="25.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="8.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="textArea_15" layoutX="13.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="textArea25" layoutX="364.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                        <Label alignment="CENTER" layoutX="196.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="User input">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="836.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="Parsed">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="step1">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="570.0" layoutY="25.0" orientation="VERTICAL" prefHeight="466.0" prefWidth="8.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="0.0" />
+                        <TextArea fx:id="textArea_16" layoutX="13.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="textArea26" layoutX="364.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="700.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0" />
+                        <Label alignment="CENTER" layoutX="196.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="User input">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="836.0" layoutY="1.0" prefHeight="30.0" prefWidth="216.0" text="Parsed">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
