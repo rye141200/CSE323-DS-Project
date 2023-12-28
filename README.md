@@ -3,7 +3,7 @@
     <li>
         <h2><img src="Styling/overview icon better.png" width= 40 height=40/> Project overview:</h2>
         <details>
-        <summary><h3><i>This program aims to:</i></h3></summary>
+        <summary><h3><i>This program aims to: (click for more info)</i></h3></summary>
         <ul>
             <li>Parse XML text</li>
             <li>Converts it to JSON</li>
@@ -17,7 +17,7 @@
         </details>
     </li>
     <li>
-        <h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks:</h2>
+        <h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks: (click for more info)</h2>
         <details>
         <summary><h3><i>This project was divided into the following parts as basic building blocks:</i></h3></summary>
         <ul>
