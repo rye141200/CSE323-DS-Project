@@ -1,0 +1,635 @@
+package com.example.demo;
+
+
+import com.example.demo.Compression.FileCompression;
+import com.example.demo.ErrorHandling.DetectionAndCorrectionMethods;
+import com.example.demo.ErrorHandling.ErrorHandler;
+import com.example.demo.FileReading.FileReaderEnhanced;
+import com.example.demo.FileReading.FileSampleEnhanced;
+import com.example.demo.Parsing.JSONConverter;
+import com.example.demo.Parsing.Parsing;
+import com.example.demo.Parsing.Tree;
+import com.example.demo.Prettier.Formatting;
+import com.example.demo.SNA_Undo.PairObject;
+import com.example.demo.SNA_Undo.SNA;
+import com.example.demo.SNA_Undo.UndoRedo;
+import com.example.demo.Visualization.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.scene.media.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+
+
+import static com.example.demo.Visualization.GraphVisualizer.showXMLGraph;
+/**********************************************/
+/*
+@author Omar Saleh Mohamed Abdo
+ */
+/**********************************************/
+
+public class HelloController {
+    // fxml elements
+    @FXML
+    private MediaPlayer video;
+    @FXML
+    private Label andrewTate;
+    @FXML
+    private AnchorPane HomePage;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private TextArea jsonFile;
+    @FXML
+    private TextArea fileFormatted;
+    @FXML
+    private TextArea compressedBakr;
+    @FXML
+    private TextArea CompressedJson;
+    @FXML
+    private TextArea DeCompressedJson;
+    @FXML
+    private TextArea DecompressedBakr;
+    @FXML
+    private GridPane gridPane;
+    @FXML
+    private Button convertButton;
+    @FXML
+    private Button minifybutton;
+    @FXML
+    private Button compressButton;
+    @FXML
+    private Button visualizeButton;
+    @FXML
+    private Button snaButton;
+    //SNR Elements
+    @FXML
+    private TextArea mostInfText;
+    @FXML
+    private TextArea mostActText;
+    @FXML
+    private TextArea mutualText;
+    @FXML
+    private TextArea friendText;
+    @FXML
+    private TextArea searchByText;
+    @FXML
+    private TextField searchUser;
+    @FXML
+    private ComboBox elementMutualOne;
+    @FXML
+    private ComboBox elementMutualTwo;
+    @FXML
+    private ComboBox elementSuggestFriend;
+    @FXML
+    private ComboBox searchBy;
+    //SNR Elements
+    private static String currentFxmlFile = "StartUpPage.fxml";
+    private static ArrayList<String> lines;
+    ArrayList<String> xmlText;
+    Parent root;
+    private File currentFile;
+
+    @FXML
+    public void onHomePageClick() throws IOException {
+        if (!currentFxmlFile.equals("StartUpPage.fxml")) {
+            loadPage("StartUpPage.fxml");
+        }
+    }
+    @FXML
+    public void onCreditClick() {
+        try {
+            Stage primaryStage = new Stage();
+            File selectedFile = new File("video_2023-12-27_17-51-28.mp4");
+            if (selectedFile != null) {
+                // Convert the selected File to a URI
+                String videoFilePath = selectedFile.toURI().toString();
+
+                // Create a Media object with the video file URI
+                Media media = new Media(videoFilePath);
+
+                // Create a MediaPlayer using the Media object
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+                // Create a MediaView to display the video
+                MediaView mediaView = new MediaView(mediaPlayer);
+
+                // Create a StackPane to hold the MediaView
+                StackPane root = new StackPane();
+                root.getChildren().add(mediaView);
+
+
+                // Create the scene and set it on the stage
+                Scene scene = new Scene(root, 640, 480);
+                primaryStage.setScene(scene);
+
+                // Set the title of the stage
+                primaryStage.setTitle("JavaFX Video Player");
+
+                // Set an event handler for stage close to stop the media player
+                primaryStage.setOnCloseRequest(event -> {
+                    mediaPlayer.stop();
+                });
+
+                // Show the stage
+                primaryStage.show();
+                mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
+                mediaView.fitHeightProperty().bind(primaryStage.heightProperty());
+                // Start playing the video
+                mediaPlayer.play();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle the exception appropriately, e.g., show an error message
+        }
+    }
+    @FXML
+    public void onClickConversionSteps() throws IOException {
+        if (!currentFxmlFile.equals("ConversionSteps.fxml")) {
+            loadPage("ConversionSteps.fxml");
+        }
+    }
+
+    @FXML
+    public void onClickClose() {
+        closeStage(HomePage);
+    }
+
+    @FXML
+    public void onLoadFileClick() throws Exception {
+        File selectedFile = openFileChooserDialog();
+        if (selectedFile != null) {
+            handleFileSelection(selectedFile);
+
+        }
+    }
+
+
+    @FXML
+    public void onConvertClick() throws Exception {
+        isCompatibleFile();
+        displayJson(lines);
+        andrewTate.setText("JSON Converted");
+    }
+
+    @FXML
+    public void onVisualizeClick() throws Exception {
+        showXMLGraph(TreeToGraph.convertTreeToGraph(Parsing.parseXML(lines)));
+    }
+
+    @FXML
+    public void onSnaClick() throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SocialNetworkAnalysis.fxml")));
+        Scene scene = new Scene(root, 900, 900);
+        Image icon = new Image("MiniLogo_2.png");
+        stage.getIcons().add(icon);
+        stage.setTitle("Social network analysis");
+        stage.resizableProperty().setValue(false);
+        stage.setScene(scene);
+
+        stage.setOnShown(event -> {
+            Tree XMLTree = null;
+            SocialGraph userGraph;
+            try {
+                System.out.println(lines);
+                XMLTree = Parsing.parseXML(lines);
+                userGraph = TreeToGraph.convertTreeToGraph(XMLTree);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            //Set the most influencer and most active
+            //1) Most influencer
+            PairObject<UserNode, Double> mostInfluencer = SNA.getMostInfluencer(userGraph);
+            TextArea mostInfText = (TextArea) root.lookup("#mostInfText");
+            mostInfText.setText("Most influencer: \n" + mostInfluencer.getKey().toString() + "\nBy degree centrality of: " + mostInfluencer.getValue());
+
+            //2) Most active
+            PairObject<UserNode, Integer> mostActive = SNA.getMostActiveUser(userGraph);
+            TextArea mostActText = (TextArea) root.lookup("#mostActText");
+            mostActText.setText("Most active: \n" + mostActive.getKey().toString() + "\nFollowing: " + mostActive.getValue() + " users");
+
+            ArrayList<String> userNames = userGraph.getUserNames();
+            String[] searchCriteria = {"Topic", "Post"};
+            ObservableList<String> observableList = FXCollections.observableArrayList(userNames);
+            ObservableList<String> observableList1 = FXCollections.observableArrayList(searchCriteria);
+            ComboBox elementMutualOne = (ComboBox) root.lookup("#elementMutualOne");
+            ComboBox elementMutualTwo = (ComboBox) root.lookup("#elementMutualTwo");
+            ComboBox elementSuggestFriend = (ComboBox) root.lookup(("#elementSuggestFriend"));
+            ComboBox searchBy = (ComboBox) root.lookup("#searchBy");
+            elementMutualOne.setItems(observableList);
+            elementMutualTwo.setItems(observableList);
+            elementSuggestFriend.setItems(observableList);
+            searchBy.setItems(observableList1);
+
+        });
+        stage.show();
+    }
+
+    @FXML
+    public void onMutualClick() throws Exception {
+        //1) Get the userNames
+        String userNameOne = (String) elementMutualOne.getValue();
+        String userNameTwo = (String) elementMutualTwo.getValue();
+        if (userNameOne == null || userNameTwo == null) {
+            showAlert("BrainDeadUserException", "Please enter two values it is to much work for OS to set default ones <3");
+            mutualText.setText("");
+            return;
+        }
+        Tree XMLTree = Parsing.parseXML(lines);
+        SocialGraph userGraph = TreeToGraph.convertTreeToGraph(XMLTree);
+
+        UserNode userOne = TreeToGraph.searchByName(userGraph.getUsers(), userNameOne);
+        UserNode userTwo = TreeToGraph.searchByName(userGraph.getUsers(), userNameTwo);
+
+        if (userNameOne.equals(userNameTwo)) {
+            showAlert("SameUserNameException", "Please set two different users because our GUI programmer is to lazy to handle that <3");
+            mutualText.setText("");
+            return;
+        }
+        //logic here to get list
+        ArrayList<UserNode> mutualUsers = SNA.getMutualFollower(userOne, userTwo, userGraph);
+        if (mutualUsers.size() == 0) {
+            showAlert("AutismPointerException", "These users are really autistic");
+            mutualText.setText("");
+            return;
+        }
+        String mutualString = "";
+        int mutualCount = 1;
+        for (UserNode mutualUser : mutualUsers) {
+            mutualString += "Mutual follower (" + mutualCount + ") :\n" + mutualUser.toString() + "\n";
+            mutualCount++;
+        }
+        mutualText.setText(mutualString);
+
+        System.out.println(mutualText);
+
+    }
+
+    @FXML
+    public void onSuggestClick() throws Exception {
+        String userName = (String) elementSuggestFriend.getValue();
+        if (userName == null) {
+            showAlert("Invalid user name:", "Please enter a username because our GUI programmer was too lazy to handle this <3");
+            friendText.setText("");
+        } else {
+            Tree XMLTree = Parsing.parseXML(lines);
+            SocialGraph userGraph = TreeToGraph.convertTreeToGraph(XMLTree);
+            UserNode user = TreeToGraph.searchByName(userGraph.getUsers(), userName);
+            ArrayList<UserNode> suggestedUsers = SNA.suggestFollowers(userGraph, user);
+            if (suggestedUsers.size() == 0) {
+                showAlertCSE("NotACSEStudentException", "No suggested follower because this user is so social and not a CSE student!");
+                friendText.setText("");
+            }
+            else {
+                String suggestedText = "";
+                for (UserNode suggestedUser : suggestedUsers)
+                    suggestedText += suggestedUser.getName() + " ,ID: " + suggestedUser.getId() + "\n";
+                friendText.setText(suggestedText);
+            }
+        }
+
+    }
+
+    @FXML
+    public void onSearchClick() throws Exception {
+        String searchCriteria = (String) searchBy.getValue();
+        if (searchCriteria == null) {
+            showAlert("Invalid search criteria", "Please enter a username because our GUI programmer was too lazy to handle this <3");
+        } else {
+            Tree XMLTree = Parsing.parseXML(lines);
+            SocialGraph userGraph = TreeToGraph.convertTreeToGraph(XMLTree);
+            if (searchUser.getText().equals("")) {
+                showAlert("BrainDeadUserException", "Please use 2 brain cells and enter a value");
+                searchByText.setText("");
+                return;
+            }
+            ArrayList<Post> posts;
+            if (searchCriteria.equals("Topic"))
+                posts = SNA.searchByTopic(userGraph, searchUser.getText());
+            else
+                posts = SNA.searchByParagraph(userGraph, searchUser.getText());
+
+            showPostsFound(posts);
+        }
+
+    }
+
+    //Visualize Part
+    private void showPostsFound(ArrayList<Post> posts) {
+        if (posts.size() == 0)
+            showAlert("Invalid entry", "Can't find this post according to your entry, try again");
+        else {
+            int postCounter = 0;
+            String postsList = "";
+            for (Post post : posts) {
+                postCounter++;
+            }
+            postsList += postCounter + " Posts found:\n";
+            for (Post post : posts) {
+                postsList += post;
+            }
+            searchByText.setText(postsList);
+        }
+    }
+
+    private void showAlert(String errorHeader, String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Error");
+        alert.setHeaderText(errorHeader);
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+
+    private void showAlertCSE(String errorHeader, String errorMessage) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Anti-autistic error");
+        alert.setHeaderText(errorHeader);
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+
+
+    @FXML
+    public void onDeleteClick() {
+        clearTextAreasAndPath();
+    }
+
+    @FXML
+    public void onCloseClick() {
+        closeStage(HomePage);
+    }
+
+    @FXML
+    public void onMinifyClick() throws Exception {
+        //xmlText = lines;
+        jsonFile.setText(FileCompression.minify(lines));
+        andrewTate.setText("Minified XML");
+    }
+
+    @FXML
+    public void onBakrCompressClick() throws Exception {
+
+        String compressedBakr = FileCompression.compressFile("xml", lines);
+        String compressedJSON = FileCompression.compressFile("JSON", new ArrayList<>(Arrays.asList(SharedDataModel.getParsedJsonText().split("\n"))));
+        // Load SocialNetworkAnalysis.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("JsonCompression.fxml"));
+        Parent parsingRoot = loader.load();
+
+        // Set the text for compressedBakr in the new stage after it's shown
+        Stage parsingStage = new Stage();
+        parsingStage.setScene(new Scene(parsingRoot));
+        parsingStage.setOnShown(event -> {
+            // This will be executed when the stage is shown
+            TextArea parsedXMLtArea = (TextArea) parsingRoot.lookup("#compressedBakr");
+            TextArea parsedJsonArea = (TextArea) parsingRoot.lookup("#CompressedJson");
+            if (parsedXMLtArea != null && parsedJsonArea != null) {
+                parsedXMLtArea.setText(compressedBakr);
+                parsedJsonArea.setText(compressedJSON);
+
+            }
+        });
+        Image icon = new Image("MiniLogo_2.png");
+        parsingStage.getIcons().add(icon);
+        parsingStage.setTitle("Compressed XML/Json");
+        parsingStage.show();
+
+    }
+
+    @FXML
+    public void onDecompressXMLClick() throws Exception {
+        String compressedXMLText = compressedBakr.getText();
+        String compressedBakr = FileCompression.decompressFile("xml",new ArrayList<>(Arrays.asList(compressedXMLText.split("\n"))));
+        DecompressedBakr.setText(compressedBakr);
+
+    }
+
+    @FXML
+    public void onDecompressJSONClick() {
+        String decompressedJSONText = FileCompression.decompressFile("json",new ArrayList<>(Arrays.asList(CompressedJson.getText().split("\n"))));
+        DeCompressedJson.setText(decompressedJSONText);
+    }
+
+    @FXML
+    public void onTyping() throws Exception{
+        String userTextChanges = fileFormatted.getText();
+        UndoRedo.setCurrentFileContent(userTextChanges);
+        SharedDataModel.setParsedXMLText(userTextChanges);
+        disableDueToDumbUserException();
+    }
+    @FXML
+    public void onRedoClick(){
+        if(!UndoRedo.isRedoStackEmpty()){
+            fileFormatted.setText(UndoRedo.redo());
+            UndoRedo.setCurrentFileContent(fileFormatted.getText());
+            SharedDataModel.setParsedXMLText(fileFormatted.getText());
+        }
+    }
+    @FXML
+    public void onUndoClick()
+    {
+        if(!UndoRedo.isUndoStackEmpty()) {
+            String undoedText = UndoRedo.undo();
+            fileFormatted.setText(undoedText);
+            UndoRedo.setCurrentFileContent(fileFormatted.getText());
+            SharedDataModel.setParsedXMLText(fileFormatted.getText());
+        }
+    }
+
+    @FXML
+    public void onSaveClick() throws IOException {
+        if(SharedDataModel.getParsedJsonText() != null){
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Directory to Save File");
+        Stage stage = (Stage) menuBar.getScene().getWindow();
+        File selectedDirectory = directoryChooser.showDialog(stage);
+        if (selectedDirectory != null) {
+            TextInputDialog dialog = new TextInputDialog("newFile");
+            dialog.setTitle("Enter File Name");
+            dialog.setHeaderText("Please enter the desired file name:");
+            dialog.setContentText("File Name:");
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(fileName -> {
+
+                if (!fileName.toLowerCase().endsWith(".json")) {
+                    fileName += ".json";
+                }
+                // Combine the selected directory and user-specified file name
+                File file = new File(selectedDirectory.getAbsolutePath() + File.separator + fileName);
+
+                try (FileWriter fileWriter = new FileWriter(file)) {
+                    // Your save logic here
+                    // e.g., write data to the file
+                    String fileContent = SharedDataModel.getParsedJsonText();
+                    fileWriter.write(fileContent);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        }
+
+    }
+
+
+    private void saveFormattedTextToFile() throws IOException {
+        if (!SharedDataModel.getPath().equals("")) {
+            try (PrintWriter writer = new PrintWriter(new FileWriter(SharedDataModel.getPath()))) {
+                writer.println(SharedDataModel.getParsedXMLText());
+            }
+        }
+    }
+
+    private void loadPage(String page) throws IOException {
+        currentFxmlFile = page;
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(page)));
+        Stage stage = (Stage) logo.getScene().getWindow();
+        stage.setScene(new Scene(root));
+    }
+
+    private void closeStage(AnchorPane page) {
+        Stage stage = (Stage) page.getScene().getWindow();
+        stage.close();
+    }
+
+    private File openFileChooserDialog() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XML File", "*.xml"),new FileChooser.ExtensionFilter(".text File", "*.txt"),new FileChooser.ExtensionFilter(".json File", "*.json"));
+        Stage stage = (Stage) menuBar.getScene().getWindow();
+        return fileChooser.showOpenDialog(stage);
+    }
+
+    private void handleFileSelection(File selectedFile) throws Exception {
+        SharedDataModel.setPath(selectedFile.getAbsolutePath());
+        ArrayList<String> fileText = DetectionAndCorrectionMethods.parseTagsFromFile(SharedDataModel.getPath());
+        fileFormatted.setText(arrayListToString(fileText)); //This outputs the file as it is
+        UndoRedo.setCurrentFileContent(fileFormatted.getText());
+        disableDueToDumbUserException();
+    }
+
+    private void updateParsedXMLTextAndShow() throws Exception {
+        if (currentFxmlFile.equals("StartUpPage.fxml")) {
+            TextArea jsonFile = (TextArea) root.lookup("#jsonFile");
+            TextArea fileFormatted = (TextArea) root.lookup("#fileFormatted");
+            isCompatibleFile();
+            /*if(!ErrorHandler.containsError(lines)) {
+                fileFormatted.setText(Formatting.formatXML(lines).toString());
+                SharedDataModel.setParsedXMLText(Formatting.formatXML(lines).toString());
+            }
+            else{
+                //Converting lines into a string
+                StringBuilder linesBlock = readFileAsItIs(SharedDataModel.getPath());
+                fileFormatted.setText(linesBlock.toString());
+                SharedDataModel.setParsedXMLText(linesBlock.toString());
+            }*/
+            Stage stage = (Stage) logo.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+
+    }
+
+    private void displayJson(ArrayList<String> xmlText) throws Exception {
+        fileFormatted.setText(Formatting.formatXML(lines).toString());
+        jsonFile.setText(JSONConverter.XMLToJSON(xmlText).toString());
+        SharedDataModel.setParsedJsonText(JSONConverter.XMLToJSON(xmlText).toString());
+    }
+    private void clearTextAreasAndPath() {
+        if (currentFxmlFile.equals("StartUpPage.fxml")) {
+            fileFormatted.setText("");
+            jsonFile.setText("");
+            SharedDataModel.setParsedXMLText("");
+            SharedDataModel.setParsedJsonText("");
+            SharedDataModel.setPath("");
+        }
+    }
+    public void disableDueToDumbUserException() throws Exception {
+        minifybutton.setDisable(true);
+        compressButton.setDisable(true);
+        visualizeButton.setDisable(true);
+        snaButton.setDisable(true);
+    }
+    public void enableDueToSmartUserException() throws Exception {
+        minifybutton.setDisable(false);
+        compressButton.setDisable(false);
+        visualizeButton.setDisable(false);
+        snaButton.setDisable(false);
+    }
+    public String arrayListToString(ArrayList<String> lines) {
+        String XMLCorrected = "";
+        for (String line : lines)
+            XMLCorrected += line + "\n";
+        return XMLCorrected;
+    }
+
+    public void isCompatibleFile() throws Exception {
+        StringBuilder XMLText = new StringBuilder(fileFormatted.getText());
+        System.out.println(XMLText);
+        ArrayList<Integer> linesWithMistakes;
+        ArrayList<String> genericXMLText = FileReaderEnhanced.readFileParsed(FileSampleEnhanced.readFileParsed(XMLText));
+        //System.out.println(linesWithMistakes);
+        if (!ErrorHandler.containsError(genericXMLText)) {
+            //Enable all buttons! :D
+            enableDueToSmartUserException();
+            lines = genericXMLText;
+        } else {
+            /*
+             *    Sequence: 1) Once the file contains errors, show the errors visually
+             *              2) Correct the errors
+             *              3) Check consistency, if the file isn't consistent even after correcting, pop up a message insulting the user
+             *                 for being a dickhead, else use the displayJson() to convert
+             * */
+            //1)Correct errors,
+            //2) If the file is consistent, set the xmlText to the new correct text, and show the lines corrected
+            //3) If not, throw an alert of braindeaduserexception
+            ArrayList<String> correctedXML = ErrorHandler.correctError(XMLText);
+            boolean noMoreErrors = !ErrorHandler.containsError(FileReaderEnhanced.readFileParsed(FileSampleEnhanced.readFileParsed(new StringBuilder(arrayListToString(correctedXML)))));
+            linesWithMistakes = ErrorHandler.detectError(new StringBuilder(arrayListToString(genericXMLText)));
+            String mistakes = "";
+            for (Integer mistake : linesWithMistakes) {
+                mistakes += "Error spotted in line: " + mistake + " and corrected." + "\n";
+            }
+            if (noMoreErrors) {
+                //Show corrected lines in terminal or tab
+                //Insert the display errors tab here
+                showAlert("Errors corrected: ", mistakes);
+                enableDueToSmartUserException();
+                //Set the text
+                String correctedXMLText = arrayListToString(correctedXML);
+                SharedDataModel.setParsedXMLText(correctedXMLText);
+                lines = FileReaderEnhanced.readFileParsed(FileSampleEnhanced.readFileParsed(new StringBuilder(correctedXMLText)));
+                fileFormatted.setText(Formatting.formatXML(lines).toString());
+            } else {
+                showAlert("File can't be corrected", "Please don't be a dickhead");
+                disableDueToDumbUserException();
+            }
+        }
+    }
+    private void saveToFile(File file, String content) {
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            fileWriter.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
