@@ -1,3 +1,4 @@
+package com.example.demo.Parsing;
 import java.util.ArrayList;
 /*****************************/
 /* 
@@ -29,23 +30,29 @@ public class Tree {
         //Breadth first
         root.printNode();
     }
+    public ArrayList<TreeNode> traverseDepthFirst(){
+        ArrayList<TreeNode> temp = new ArrayList<>();
+        root.getAll(temp);
+        return temp;
+    }
+    public StringBuilder toJSON(StringBuilder temp,int depth){
+        return root.getJSON(temp,depth);
+    }
     public static void main(String[] args){
         /******************TEST CODE***********************************/
-        /*  TreeNode nodeOne = new TreeNode("5", "book11");
-            TreeNode nodeTwo = new TreeNode("1", "Adam");
-            TreeNode nodeThree = new TreeNode("2", "Data Analysis");
-            TreeNode nodeFour = new TreeNode("3", "Data Cleaning");
-            TreeNode nodeFive = new TreeNode("6", "Data Gathering");
+        TreeNode nodeOne = new TreeNode("Book", "book11");
+        TreeNode nodeTwo = new TreeNode("Author", "Adam");
+        TreeNode nodeThree = new TreeNode("Title", "Data Analysis");
+        TreeNode nodeFour = new TreeNode("Unit", "Data Cleaning");
+        TreeNode nodeFive = new TreeNode("Unit", "Data Gathering");
 
-
-            Tree mainTree = new Tree(nodeOne);
-            mainTree.addNode(nodeTwo, mainTree.getRoot());
-            mainTree.addNode(nodeThree, mainTree.getRoot());
-            mainTree.addNode(nodeFour, nodeThree);
-            mainTree.addNode(nodeFive, nodeThree);
-            System.out.println("*********************************************");
-            mainTree.printTree(); 
-            */
+        Tree mainTree = new Tree(nodeOne);
+        mainTree.addNode(nodeTwo, mainTree.getRoot());
+        mainTree.addNode(nodeThree, mainTree.getRoot());
+        mainTree.addNode(nodeFour, nodeThree);
+        mainTree.addNode(nodeFive, nodeThree);
+        System.out.println("*********************************************");
+        System.out.println(mainTree.traverseDepthFirst());          
 
     }
 }
