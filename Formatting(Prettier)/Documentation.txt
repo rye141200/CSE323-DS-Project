@@ -3,15 +3,16 @@ formatXML()
 Time Complexity: O(N).
 
 append_spaces()
-Time Complexity: O(D (S1 S2)) = O(S1).
+Time Complexity: O(D * (S1 * S2)) = O(S1).
 Where D is the depth of the indentation, S1 is the stringbuilder orignal length, S2 is the length of the string being inserted, S1 is bigger than all of them in most cases so it was approxmited to O(S1).
 
 2) Space analysis:
 formateXML()
-Space Complexity: O(N)
+Space Complexity: O(N) Where N is the length of the ArrayList where formatted XML is stored.
 
 append_spaces()
-Space Complexity: O(S2)
+Space Complexity: O(S2).
+S2 is the length of the string being inserted.
 
 3) Logic
 I use the parsed file which is put into an array list each element of this array list is either <> or </> or a value.
