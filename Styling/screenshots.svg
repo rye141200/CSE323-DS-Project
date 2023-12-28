@@ -1,26 +1,38 @@
 <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
   <!-- Define the grid columns -->
+  <defs>
+    <style>
+      .column {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px; /* Adjust the gap between images */
+      }
+    </style>
+  </defs>
 
   <!-- Create a container for the grid -->
+  <g class="column">
 
     <!-- Image 1 -->
-    <image href="Styling/1.jpg" width="190" height="140" />
+    <image src="1.jpg" x="0" y="0" width="190" height="140" />
 
     <!-- Image 2 -->
-    <image href="Styling/2.jpg" width="190" height="140" />
+    <image src="2.jpg" x="200" y="0" width="190" height="140" />
 
     <!-- Image 3 -->
-    <image href="Styling/3.jpg" width="190" height="140" />
+    <image src="3.jpg" x="0" y="150" width="190" height="140" />
 
     <!-- Image 4 -->
-    <image href="Styling/4.jpg" width="190" height="140" />
+    <image src="4.jpg" x="200" y="150" width="190" height="140" />
 
     <!-- Image 5 -->
-    <image href="Styling/5.jpg" width="190" height="140" />
+    <image src="5.jpg" x="0" y="300" width="190" height="140" />
 
     <!-- Image 6 -->
-    <image href="Styling/6.jpg" width="190" height="140" />
+    <image src="6.jpg" x="200" y="300" width="190" height="140" />
 
     <!-- Image 7 -->
-    <image href="Styling/7.jpg" width="190" height="140" />
+    <image src="7.jpg" x="0" y="450" width="190" height="140" />
+
+  </g>
 </svg>
