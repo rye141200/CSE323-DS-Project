@@ -28,7 +28,7 @@
             <li>Compression</li>
             <li>Graph</li>
             <li>Tree to Graph</li>
-            <li>Graph Visualization</li>
+            <li>Graph Visualization (3rd party library)</li>
             <li>SNA (Social Network Analysis)</li>
             <li>Undo/Redo</li>
             <li>GUI</li>
@@ -47,7 +47,7 @@
           <tbody>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/File%20read%20sample/FileReaderEnhanced.java#L13">readFileParsed()</a></td>
-              <td>O(n*m) where n is the size of file, m is the size of tag string</td>
+              <td>O(n*m) where n is the size of file, m is the size of tag string.</td>
             </tr>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Error%20Handling/ErrorHandler.java#L57">correctError()</a></td>
@@ -63,19 +63,19 @@
             </tr>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/7f6f23d41bf14884685c22821a7e10ba484ac376/Formatting(Prettier)/Formatting.java#L26">formatXML()</a></td>
-              <td> O(n*m*k), where n is size of XML file, m is the cost of inserting into the file, and k is the identation which would normally reduce to O(n)</td>
+              <td> O(n*m*k), where n is size of XML file, m is the cost of inserting into the file, and k is the identation which would normally reduce to O(n).</td>
             </tr>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/Parsing%20and%20JSON/Parsing.java#L15">parseXML()</a></td>
-              <td>O(n*m), where n is the size of the file in terms of tags, m is the size of the tag string</td>
+              <td>O(n*m), where n is the size of the file in terms of tags, m is the size of the tag string.</td>
             </tr>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/Parsing%20and%20JSON/JSONConverter.java#L22">XMLToJSON()</a></td>
-              <td>O(n*m^2), where n is the size of file in terms of tags, m is the number of children of nodes</td>
+              <td>O(n*m^2), where n is the size of file in terms of tags, m is the number of children of nodes.</td>
             </tr>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/File%20Compression/FileCompression.java#L28">minify()</a></td>
-              <td>O(n^2), where n is the size of file in terms of tags</td>
+              <td>O(n^2), where n is the size of file in terms of tags.</td>
             </tr>
             <tr>
               <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/ecffcc258dfab6b55a95a92833a496b98c818957/File%20Compression/FileCompression.java#L116">compressFile()</a></td>
@@ -86,7 +86,7 @@
               <td>O(n) n is the total number of characters in the whole file.</td>
             </tr>
             <tr>
-              <td>Row 2, Cell 1</td>
+              <td><a href="https://github.com/rye141200/CSE323-DS-Project/blob/5b60f23b15ea2be4f949eafcca17f456befbab64/Visualization/TreeToGraph.java#L22">convertTreeToGraph()</a></td>
               <td>Row 2, Cell 2</td>
             </tr>
             <tr>
