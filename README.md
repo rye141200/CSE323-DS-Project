@@ -1,4 +1,5 @@
 <h1><img src="Styling/xml.png" width= 40 height=40/><img src="Styling/XMLParser.svg" alt="XMLParser"/></h1>
+<h2><a href="https://drive.google.com/file/d/12-b6eQapLEeBN5HQ7qYb67xzs6glhclf/view?usp=sharing">Click here to download exe</a></h2>
 <h2>In order to run the exe file, please have JDK 21 setup, if you don't have it download it from this link: <a href="https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.exe">JDK 21 Windows</a> 
         make sure it is in "C:\Program Files\Java".</h2>
 <ul>
