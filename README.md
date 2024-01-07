@@ -15,7 +15,7 @@
         <details>
         <summary><h2><img src="Styling/search.png" width= 40 height=40/> Project overview</h2></summary>
         <ul>
-        <h3><i>This program aims to: <b>(click for info)</b></i></h3>
+        <h3><i>This program aims to:</i></h3>
         <ul>
             <li>Parse XML text</li>
             <li>Converts it to JSON</li>
