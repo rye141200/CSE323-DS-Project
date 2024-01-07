@@ -12,11 +12,10 @@
         </ol>
         
 </h2>
-<ul>
-        <h2><img src="Styling/search.png" width= 40 height=40/> Project overview</h2>
-        <ul>
         <details>
-        <summary><h3><i>This program aims to: <b>(click for info)</b></i></h3></summary>
+        <summary><h2><img src="Styling/search.png" width= 40 height=40/> Project overview</h2></summary>
+        <ul>
+        <h3><i>This program aims to: <b>(click for info)</b></i></h3>
         <ul>
             <li>Parse XML text</li>
             <li>Converts it to JSON</li>
@@ -29,10 +28,10 @@
         </ul>
         </details>
         </ul>
-        <h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks</h2>
-        <ul>
         <details>
-        <summary><h3><i>This project was divided into the following parts as basic building blocks</i></h3></summary>
+        <summary><h2><img src="Styling/Building blocks.png" width= 30 height= 30/> Project building blocks</h2></summary>
+        <ul>
+        <h3><i>This project was divided into the following parts as basic building blocks</i></h3>
         <ul>
             <li><strong>File reading:</strong> <i>reads the input file, parses it and creates a list of all the elements inside the file</i></li>
             <li><strong>Error correction:</strong> <i>corrects missing tags (opening or closing) and mismatching tags</i></li>
@@ -51,10 +50,10 @@
         </ul>
        </details>
         </ul>
-        <h2><img src="Styling/time analysis.png" width=30 height=30/> Time complexity analysis</h2>
-        <ul>
         <details>
-        <summary><h3><i>Time complexity analysis of each main method:</i></h3></summary>
+        <summary><h2><img src="Styling/time analysis.png" width=30 height=30/> Time complexity analysis</h2></summary>
+        <ul>
+        <h3><i>Time complexity analysis of each main method:</i></h3>
         <table>
           <thead>
             <tr>
@@ -143,20 +142,20 @@
         </table>
         </details>
         </ul>
-        <h2><img src="Styling/screenshots icon.png" width=30 height=30/> Screenshots</h2>
-        <ul>
         <details>
-                <summary><h3><i>Samples of file while running:</i></h3></summary>                                                                                                
+        <summary><h2><img src="Styling/screenshots icon.png" width=30 height=30/> Screenshots</h2></summary>
+        <ul>
+                 <h3><i>Samples of file while running:</i></h3>                                                                                                
                  <img src="Styling/1.jpg" width=512 height=512/>  <img src="Styling/2.jpg" width=512 height=512/> 
                  <img src="Styling/3.jpg" width=512 height=512/>  <img src="Styling/4.jpg" width=512 height=512/> 
                  <img src="Styling/5.jpg" width=512 height=512/>  <img src="Styling/6.jpg" width=512 height=512/> 
                  <img src="Styling/7.jpg" width=512 height=512/>                                                  
         </details>
         </ul>
-        <h2><img src="Styling/team members icon.png" width=30 height=30/> Team members</h2>
-        <ul>
         <details>
-        <summary><h3><i>Members:</i></h3></summary>
+        <summary><h2><img src="Styling/team members icon.png" width=30 height=30/> Team members</h2></summary>
+        <ul>
+        <h3><i>Members:</i></h3>
         <table>
           <thead>
             <tr>
