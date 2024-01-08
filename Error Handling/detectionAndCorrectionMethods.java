@@ -10,8 +10,8 @@ public class DetectionAndCorrectionMethods {
 
         String path = "sample.xml"; // put your xml file location
         ArrayList<String> dataparsed = parseTagsFromFile(path);
-        //System.out.println(detectError(path));
-        //correctError(path);
+        System.out.println(detectError(path));
+        correctError(path);
 
     }
 //    public static ArrayList<String> detectMissingClosingTag2(ArrayList<String> parsedLines) {
@@ -564,5 +564,23 @@ public class DetectionAndCorrectionMethods {
             return false;
         }
     }
+
+
+    public static String extractAttributesFromLine(String lineContent) {
+        Pattern pattern = Pattern.compile("\\s+([^\\s=]+)=\"([^\"]*)\"");
+        Matcher matcher = pattern.matcher(lineContent);
+        StringBuilder attributesBuilder = new StringBuilder();
+        if (matcher.find()) {
+            attributesBuilder.append(" ");
+            do {
+                attributesBuilder.append(matcher.group(1)).append("=\"").append(matcher.group(2)).append("\" ");
+            } while (matcher.find());
+            attributesBuilder.setLength(attributesBuilder.length() - 1); // Remove the trailing space
+            return attributesBuilder.toString();
+        } else {
+            return "";
+        }
+    }
+
 
 }
