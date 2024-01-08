@@ -144,12 +144,29 @@
         </ul>
         <details>
         <summary><h2><img src="Styling/screenshots icon.png" width=30 height=30/> Screenshots</h2></summary>
-        <ul>
-                 <h3><i>Samples of file while running:</i></h3>                                                                                                
-                 <img src="Styling/1.jpg" width=512 height=512/>  <img src="Styling/2.jpg" width=512 height=512/> 
-                 <img src="Styling/3.jpg" width=512 height=512/>  <img src="Styling/4.jpg" width=512 height=512/> 
-                 <img src="Styling/5.jpg" width=512 height=512/>  <img src="Styling/6.jpg" width=512 height=512/> 
-                 <img src="Styling/7.jpg" width=512 height=512/>                                                  
+        <ul>      
+                 <h3><i>Samples of file while running: (Click on photo for better view)</i></h3>
+                <table>
+                        <tr>
+                                <th></th>
+                                <th></th>
+                        </tr>
+                        <tr>
+                                <td><img src="Styling/1.jpg" width=512 height=512/></td>
+                                <td><img src="Styling/2.jpg" width=512 height=512/></td>
+                        </tr>
+                        <tr>
+                                 <td><img src="Styling/3.jpg" width=512 height=512/></td>       
+                                 <td><img src="Styling/4.jpg" width=512 height=512/> </td>       
+                        </tr>
+                        <tr>
+                                 <td><img src="Styling/5.jpg" width=512 height=512/></td>       
+                                 <td><img src="Styling/6.jpg" width=512 height=512/> </td>       
+                        </tr>
+                        <tr>
+                                 <td><img src="Styling/7.jpg" width=512 height=512/></td>             
+                        </tr>
+                </table>                                              
         </details>
         </ul>
         <details>
